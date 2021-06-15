@@ -1,0 +1,127 @@
+$navLinks: #10ac97;
+
+.bg-light {
+  background-color: #7adacc !important;
+}
+
+.navbar {
+  box-shadow: 0 0 3px #6ec5b8;
+}
+
+.nav-link {
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.navbar-light .navbar-nav, .nav-link {
+  color: $navLinks !important;
+}
+
+.navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+.logo {
+  height: 100px;
+}
+
+.cart {
+  height: 24px;
+  width: 24px;
+}
+
+.hero {
+  width: 100%;
+  position: absolute;
+  height: 114vh;
+}
+
+.orderButton {
+  vertical-align: middle;
+}
+
+.ButtonBg {
+  width: 160px;
+  height: 7vh;
+  padding: 6px;
+  top: 30%;
+  background-color: #f28705;
+  color: #ca4804;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  margin: 75px;
+  bottom: 290px;
+}
+
+.divider {
+
+}
+
+.why {
+  width: 100%;
+  height: 200vh;
+  background-color: ivory;
+  padding: 20px 15px 20px 15px;
+}
+
+
+.footer {
+  width: 100%;
+  position: relative;
+  color: $navLinks;
+  z-index: 1;
+  background-color: #01a48f;
+  bottom: 0;
+}
+
+.main-footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  padding: 70px 15px 50px 15px;
+}
+
+.footer-links a {
+  color: ivory !important;
+}
+
+.social-links {
+  display: flex;
+}
+
+.social-icons {
+  height: 20px;
+  width: 20px;
+}
+
+.row {
+  flex-wrap: nowrap;
+}
+
+.footer-logo {
+  height: 190px;
+  position: absolute;
+  top: -107px;
+}
+
+.footer-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 0 var(--page-padding);
+}
+

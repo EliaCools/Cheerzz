@@ -24,6 +24,7 @@ class AppFixtures extends Fixture
         $user->setEmail('test@cocktail.com');
         $user->setUsername('Johny Booze Legs');
         $user->setPassword($this->passwordHasher->hashPassword($user, 'password'));
+        $user->setPhone('0000000000');
         $user->setDateOfBirth(new \DateTime('2000-01-01'));
 
         $manager->persist($user);

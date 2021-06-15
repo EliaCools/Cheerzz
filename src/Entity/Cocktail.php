@@ -52,94 +52,71 @@ class Cocktail
      */
     private $isAlcoholic;
 
-    public function getId(): ?int
+    /**
+     * Cocktail constructor.
+     * @param $id
+     * @param $name
+     * @param $image
+     * @param $category
+     * @param $glass
+     * @param array $ingredientsAndMeasurements
+     * @param $instructions
+     * @param $isAlcoholic
+     */
+    public function __construct($id, $name, $image, $category, $glass, array $ingredientsAndMeasurements, $instructions, $isAlcoholic)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->image = $image;
+        $this->category = $category;
+        $this->glass = $glass;
+        $this->ingredientsAndMeasurements = $ingredientsAndMeasurements;
+        $this->instructions = $instructions;
+        $this->isAlcoholic = $isAlcoholic;
+    }
+
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getCategory(): ?string
+    public function getCategory(): string
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    public function getGlass(): ?string
+    public function getGlass(): string
     {
         return $this->glass;
     }
 
-    public function setGlass(string $glass): self
-    {
-        $this->glass = $glass;
-
-        return $this;
-    }
-
-    public function getIngredientsAndMeasurements(): ?array
+    public function getIngredientsAndMeasurements(): array
     {
         return $this->ingredientsAndMeasurements;
     }
 
-    public function setIngredientsAndMeasurements(array $ingredientsAndMeasurements): self
-    {
-        $this->ingredientsAndMeasurements = $ingredientsAndMeasurements;
 
-        return $this;
-    }
-
-    public function getInstructions(): ?string
+    public function getInstructions(): string
     {
         return $this->instructions;
     }
 
-    public function setInstructions(string $instructions): self
-    {
-        $this->instructions = $instructions;
-
-        return $this;
-    }
-
-    public function getIsAlcoholic(): ?bool
+   public function getIsAlcoholic(): bool
     {
         return $this->isAlcoholic;
     }
 
-    public function setIsAlcoholic(bool $isAlcoholic): self
-    {
-        $this->isAlcoholic = $isAlcoholic;
-
-        return $this;
-    }
 
 
 }

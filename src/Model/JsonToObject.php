@@ -11,7 +11,8 @@ class JsonToObject
     /**
      * @return Cocktail[]
      */
-    public function convertToCocktails(string $fetchMultiple) :  array{
+    public function convertToCocktails(string $fetchMultiple): array
+    {
 
         $cocktails = [];
 
@@ -20,34 +21,36 @@ class JsonToObject
         $ingredients = [];
 
 
-        foreach( $decoded -> drinks as $stdObject){
+        foreach ($decoded->drinks as $stdObject)
+        {
 
             // @ Todo get ingredients and measurements in multi dimensional array
-        //   for($i = 0; $i<15 ; $i++){
-        //       $ingredients[] = $stdObject-> strIngredient . $i;
-        //   }
+            //   for($i = 0; $i<15 ; $i++){
+            //       $ingredients[] = $stdObject-> strIngredient . $i;
+            //   }
 
-            if($stdObject->strAlcoholic === 'Alcoholic' ) {
-                $stdObject -> strAlcoholic = true;
+            if ($stdObject->strAlcoholic === 'Alcoholic')
+            {
+                $stdObject->strAlcoholic = true;
             }
 
 
-        $cocktails[] = new Cocktail(
-            $stdObject -> idDrink,
-            $stdObject -> strDrink,
-            $stdObject -> strDrinkThumb,
-            $stdObject -> strCategory,
-            $stdObject -> strGlass,
-            $ingredients,
-            $stdObject-> strInstructions,
-            $stdObject-> strAlcoholic);
+            $cocktails[] = new Cocktail(
+                $stdObject->idDrink,
+                $stdObject->strDrink,
+                $stdObject->strDrinkThumb,
+                $stdObject->strCategory,
+                $stdObject->strGlass,
+                $ingredients,
+                $stdObject->strInstructions,
+                $stdObject->strAlcoholic);
         }
 
         return $cocktails;
     }
 
 
-    public function convertToSingleCocktail(string $fetchSingleCocktail) :  Cocktail
+    public function convertToCocktail(string $fetchSingleCocktail): Cocktail
     {
 
         $decoded = json_decode($fetchSingleCocktail);
@@ -56,30 +59,32 @@ class JsonToObject
 
         $cocktails = [];
 
-        foreach( $decoded -> drinks as $stdObject){
+        foreach ($decoded->drinks as $stdObject)
+        {
 
-        // @ Todo get ingredients and measurements in multi dimensional array
-        //   for($i = 0; $i<15 ; $i++){
-        //       $ingredients[] = $stdObject-> strIngredient . $i;
-        //   }
+            // @ Todo get ingredients and measurements in multi dimensional array
+            //   for($i = 0; $i<15 ; $i++){
+            //       $ingredients[] = $stdObject-> strIngredient . $i;
+            //   }
 
-            if($stdObject->strAlcoholic === 'Alcoholic' ) {
-                $stdObject -> strAlcoholic = true;
+            if ($stdObject->strAlcoholic === 'Alcoholic')
+            {
+                $stdObject->strAlcoholic = true;
             }
 
 
-        $cocktails[]  = new Cocktail(
-            $stdObject -> idDrink,
-            $stdObject -> strDrink,
-            $stdObject -> strDrinkThumb,
-            $stdObject -> strCategory,
-            $stdObject -> strGlass,
-            $ingredients,
-            $stdObject-> strInstructions,
-            $stdObject-> strAlcoholic);
+            $cocktails[] = new Cocktail(
+                $stdObject->idDrink,
+                $stdObject->strDrink,
+                $stdObject->strDrinkThumb,
+                $stdObject->strCategory,
+                $stdObject->strGlass,
+                $ingredients,
+                $stdObject->strInstructions,
+                $stdObject->strAlcoholic);
         }
 
-         return $cocktails[0];
+        return $cocktails[0];
     }
 
 

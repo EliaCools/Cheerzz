@@ -5,6 +5,7 @@ namespace App\Model;
 
 use App\Entity\Cocktail;
 use App\Entity\Ingredient;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -16,6 +17,8 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 class CocktailApiClient
 {
     private HttpClientInterface $client;
+    private JsonToObject $converter;
+
     private const SOURCE = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
     private const DRINKS = 'drinks';
@@ -26,11 +29,13 @@ class CocktailApiClient
     private const STR_GLASS = 'strGlass';
     private const STR_CATEGORY = 'strCategory';
     private const STR_INSTRUCTIONS = 'strInstructions';
+
     //TODO: add instruction string suffixes for other languages at some point.
 
-    public function __construct(HttpClientInterface $client)
+    #[Pure] public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
+        $this->converter = new JsonToObject();
     }
 
     //<editor-fold desc="Cocktail Functions">
@@ -39,7 +44,6 @@ class CocktailApiClient
      * @param string $character
      * @return cocktail[]
      * @throws ClientExceptionInterface
-     * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
@@ -48,36 +52,13 @@ class CocktailApiClient
     {
         $response = $this->fetchRequest("search.php?f=$character");
 
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
-        $content = $response->toArray();
-
-        $cocktails = [];
-        $testString = "";
-        foreach ($content[self::DRINKS] as $item)
-        {
-            $name = $item[self::STR_NAME];
-            $id = $item[self::STR_ID];
-            $isAlcoholic = $this->parseIsAlcoholic($item[self::STR_ALCOHOLIC]);
-            $imageLink = $item[self::STR_IMAGE];
-            $glassType = $item[self::STR_GLASS];
-            $category = $item[self::STR_CATEGORY];
-            $instructions = $item[self::STR_INSTRUCTIONS];
-            $cocktail = new Cocktail($id, $name, $imageLink, $category, $glassType, [], $instructions, $isAlcoholic);
-
-            //TODO: add logic to add ingredients and quantities to the cocktail object.
-            $testString .= $item['strDrink'] . " ";
-        }
-
-        return $cocktails;
+        return $this->converter->convertToCocktails($response->getContent());
     }
 
     /**
      * @param string $name
      * @return Cocktail|null
      * @throws ClientExceptionInterface
-     * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
@@ -85,26 +66,13 @@ class CocktailApiClient
     public function fetchCocktailByName(string $name): ?Cocktail
     {
         $response = $this->fetchRequest("search.php?s=$name");
-
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
-        $content = $response->toArray();
-
-        if($content[self::DRINKS] === null)
-        {
-            return null;
-        }
-
-        //TODO: return proper cocktail, not a null object.
-        return new Cocktail("", "", "", "", "", [], "", false);
+        return $this->converter->convertToCocktail($response->getContent());
     }
 
     /**
      * @param int $id
      * @return Cocktail|null
      * @throws ClientExceptionInterface
-     * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
@@ -112,65 +80,36 @@ class CocktailApiClient
     public function fetchCocktailById(int $id): ?Cocktail
     {
         $response = $this->fetchRequest("lookup.php?iid=$id");
-
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
-        $content = $response->toArray();
-
-        if($content[self::DRINKS] === null)
-        {
-            return null;
-        }
-
-        //TODO: return proper cocktail, not a null object.
-        return new Cocktail("", "", "", "", "", [], "", false);
+        return $this->converter->convertToCocktail($response->getContent());
     }
 
     /**
      * @return Cocktail
      * @throws ClientExceptionInterface
-     * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function fetchRandomCocktail() : Cocktail
+    public function fetchRandomCocktail(): Cocktail
     {
         $response = $this->fetchRequest("random.php");
-
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
-        $content = $response->toArray();
-
-        //TODO: return proper cocktail, not a null object.
-        return new Cocktail("", "", "", "", "", [], "", false);
+        return $this->converter->convertToCocktail($response->getContent());
     }
 
     /**
      * @param Ingredient $ingredient
      * @return Cocktail[]
      * @throws ClientExceptionInterface
-     * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function fetchCocktailsByIngredient(Ingredient $ingredient) : array
+    public function fetchCocktailsByIngredient(Ingredient $ingredient): array
     {
         $ingredientName = $ingredient->getName();
         $response = $this->fetchRequest("filter.php/?i=$ingredientName");
 
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
-        $content = $response->toArray();
-
-        //TODO: return proper cocktail, not a null object.
-        $cocktails = [];
-        $cocktails[] = new Cocktail("", "", "", "", "", [], "", false);
-        return $cocktails;
+        return $this->converter->convertToCocktails($response->getContent());
     }
 
     //</editor-fold>
@@ -196,7 +135,7 @@ class CocktailApiClient
         $content = $response->toArray();
 
         //TODO: implement ingredient data parser
-        return new Ingredient(0,"","",false,"");
+        return new Ingredient(0, "", "", false, "");
     }
 
     /**
@@ -218,7 +157,7 @@ class CocktailApiClient
         $content = $response->toArray();
 
         //TODO: implement ingredient data parser
-        return new Ingredient(0,"","",false,"");
+        return new Ingredient(0, "", "", false, "");
     }
 
     //TODO: write more functions for cocktail ingredients
@@ -232,7 +171,7 @@ class CocktailApiClient
      * @return ResponseInterface
      * @throws TransportExceptionInterface
      */
-    private function fetchRequest(string $path) : ResponseInterface
+    private function fetchRequest(string $path): ResponseInterface
     {
         //generate request to access API
         return $this->client->request(
@@ -240,23 +179,5 @@ class CocktailApiClient
             self::SOURCE . $path,
         );
     }
-
-    /**
-     * take in a string from the JSON that would denote whether a cocktail or ingredient is alcoholic, and returns a bool accordingly.
-     * @param string $value
-     * @return bool
-     */
-    private function parseIsAlcoholic(string $value): bool
-    {
-        switch (strtolower($value))
-        {
-            case "alcoholic":
-                return true;
-            case "non alcoholic":
-                default:
-                return false;
-        }
-    }
-
     //</editor-fold>
 }

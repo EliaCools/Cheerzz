@@ -11,7 +11,8 @@ class JsonToObject
     /**
      * @return Cocktail[]
      */
-    public function convertToCocktails(string $fetchMultiple) :  array{
+    public function convertToCocktails(string $fetchMultiple): array
+    {
 
         $cocktails = [];
 
@@ -37,20 +38,21 @@ class JsonToObject
                $ingredients[$i-1][] = $stdObject-> $dynamic_var;
            }
 
-            if($stdObject->strAlcoholic === 'Alcoholic' ) {
-                $stdObject -> strAlcoholic = true;
+            if ($stdObject->strAlcoholic === 'Alcoholic')
+            {
+                $stdObject->strAlcoholic = true;
             }
 
 
-        $cocktails[] = new Cocktail(
-            $stdObject -> idDrink,
-            $stdObject -> strDrink,
-            $stdObject -> strDrinkThumb,
-            $stdObject -> strCategory,
-            $stdObject -> strGlass,
-            $ingredients,
-            $stdObject-> strInstructions,
-            $stdObject-> strAlcoholic);
+            $cocktails[] = new Cocktail(
+                $stdObject->idDrink,
+                $stdObject->strDrink,
+                $stdObject->strDrinkThumb,
+                $stdObject->strCategory,
+                $stdObject->strGlass,
+                $ingredients,
+                $stdObject->strInstructions,
+                $stdObject->strAlcoholic);
         }
 
         return $cocktails;
@@ -64,7 +66,8 @@ class JsonToObject
 
         $cocktails = [];
 
-        foreach( $decoded -> drinks as $stdObject){
+        foreach ($decoded->drinks as $stdObject)
+        {
 
             $ingredients = [];
 
@@ -82,23 +85,24 @@ class JsonToObject
                 $ingredients[$i-1][] = $stdObject-> $dynamic_var;
             }
 
-            if($stdObject->strAlcoholic === 'Alcoholic' ) {
-                $stdObject -> strAlcoholic = true;
+            if ($stdObject->strAlcoholic === 'Alcoholic')
+            {
+                $stdObject->strAlcoholic = true;
             }
 
 
-        $cocktails[]  = new Cocktail(
-            $stdObject -> idDrink,
-            $stdObject -> strDrink,
-            $stdObject -> strDrinkThumb,
-            $stdObject -> strCategory,
-            $stdObject -> strGlass,
-            $ingredients,
-            $stdObject-> strInstructions,
-            $stdObject-> strAlcoholic);
+            $cocktails[] = new Cocktail(
+                $stdObject->idDrink,
+                $stdObject->strDrink,
+                $stdObject->strDrinkThumb,
+                $stdObject->strCategory,
+                $stdObject->strGlass,
+                $ingredients,
+                $stdObject->strInstructions,
+                $stdObject->strAlcoholic);
         }
 
-         return $cocktails[0];
+        return $cocktails[0];
     }
 
 

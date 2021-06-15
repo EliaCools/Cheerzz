@@ -9,7 +9,9 @@
 /var/
 /vendor/
 /.env/
+.idea
 .env
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

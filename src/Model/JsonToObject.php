@@ -10,6 +10,7 @@ use Symfony\Component\HttpClient\Exception\JsonException;
 
 class JsonToObject
 {
+    //constants for navigating the API's cocktail Json
     private const DRINKS = 'drinks';
     private const STR_ID = 'idDrink';
     private const STR_NAME = 'strDrink';

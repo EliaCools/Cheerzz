@@ -7,7 +7,7 @@ use http\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 //to run the tests, enter the following command into the terminal:
-//./vendor/bin/phpunit
+//      ./vendor/bin/phpunit
 class CocktailCalculatorTest extends TestCase
 {
     public function testFraction(): void
@@ -32,5 +32,9 @@ class CocktailCalculatorTest extends TestCase
         self::assertEquals(14.79, $calculator->calculateMeasurement('1 tbsp'));
         self::assertEquals(4.93, $calculator->calculateMeasurement('1 tsp'));
         self::assertEquals(44.36, $calculator->calculateMeasurement('1 shot'));
+
+        self::assertEquals(1, $calculator->calculateMeasurement('1'));
+        self::assertEquals(7.5, $calculator->calculateMeasurement('3/4', 10));
+        self::assertEquals(0, $calculator->calculateMeasurement('1 1/4', 0));
     }
 }

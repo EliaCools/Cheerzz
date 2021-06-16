@@ -5,7 +5,6 @@ namespace App\Model;
 
 use App\Entity\Cocktail;
 use http\Exception\InvalidArgumentException;
-use JetBrains\PhpStorm\Pure;
 
 class CocktailCalculator
 {
@@ -19,19 +18,20 @@ class CocktailCalculator
      * @param Cocktail $cocktail
      * @return Quantity[]
      */
-    public function CalculateIngredientQuantities(Cocktail $cocktail) : array
+    public function CalculateIngredientQuantities(Cocktail $cocktail): array
     {
         $ingredients = $cocktail->getIngredientsAndMeasurements();
         $quantities = [];
-        foreach($ingredients AS $ingredient)
+        foreach ($ingredients as $ingredient)
         {
             $name = $ingredient[0];
             $strAmount = $ingredient[1];
 
-            $quantities[] = new Quantity($name,$this->calculateMeasurement($strAmount));
+            $quantities[] = new Quantity($name, $this->calculateMeasurement($strAmount));
         }
         return $quantities;
     }
+
     //<editor-fold desc="Conversion functions">
 
     private function convertOunceToMl(float $ounces): float
@@ -69,7 +69,7 @@ class CocktailCalculator
         return $this->fractionToFloat((int)$values[0], (int)$values[1]);
     }
 
-    public function calculateMeasurement(string $input): float
+    public function calculateMeasurement(string $input, int $total = 1): float
     {
         $data = explode(" ", $input);
 
@@ -89,22 +89,38 @@ class CocktailCalculator
                 continue;
             }
 
-            if (in_array($chunk, self::MEASUREMENTS))
+            if (in_array($chunk, self::MEASUREMENTS, false))
             {
-                return match (strtolower($chunk))
+                switch ($chunk)
                 {
-                    'ml' => $value,
-                    'cl' => $value * .1,
-                    'l' => $value * .001,
-                    'oz' => $this->convertOunceToMl($value),
-                    'tsp' => $this->convertTeaspoonToMl($value),
-                    'tbsp' => $this->convertTableSpoonToMl($value),
-                    'shot' => $this->convertShotToMl($value),
-                    default => $value,
-                };
+                    case 'ml':
+                    default:
+                        return $value;
+                    case 'cl':
+                        return $value * .1;
+                    case 'l':
+                        return $value * .001;
+                    case 'oz':
+                        return $this->convertOunceToMl($value);
+                    case 'tsp':
+                        return $this->convertTeaspoonToMl($value);
+                    case 'tbsp':
+                        return $this->convertTableSpoonToMl($value);
+                    case 'shot':
+                        return $this->convertShotToMl($value);
+                }
             }
         }
-        return $value;
+        //TODO: make it so the calculator takes in the volume of a glass, and, if it gets to this point, calculates
+        //      the relative value of the glass' contents.
+
+        //      if the code gets to this point, it has only found numerical values, but no quantity identifier.
+        //      this means that it is trying to show a fraction of a total value, a percentage if you will.
+        //      as such, it might be expedient to take in the total value, and return the relative value.
+        //      normally, the value at this point should be a total value less than 1. if it is above 1, the
+        //      glass ought to run over, so that shouldn't happen. But that sounds more like an API problem than
+        //      one we should fix.
+        return $value * $total;
     }
 
     //</editor-fold>

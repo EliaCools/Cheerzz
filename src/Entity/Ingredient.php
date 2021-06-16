@@ -14,27 +14,27 @@ class Ingredient
      * @ORM\Id
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    private string $description;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAlcoholic;
+    private bool $isAlcoholic;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
+    private string $type;
 
     /**
      * Ingredient constructor.

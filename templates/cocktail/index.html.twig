@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cocktail index{% endblock %}
+
+{% block body %}
+    <h1>Cocktail index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Glass</th>
+                <th>IngredientsAndMeasurements</th>
+                <th>Instructions</th>
+                <th>IsAlcoholic</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cocktail in cocktails %}
+            <tr>
+                <td>{{ cocktail.id }}</td>
+                <td>{{ cocktail.name }}</td>
+                <td>{{ cocktail.image }}</td>
+                <td>{{ cocktail.category }}</td>
+                <td>{{ cocktail.glass }}</td>
+                <td>{{ cocktail.ingredientsAndMeasurements ? cocktail.ingredientsAndMeasurements|join(', ') : '' }}</td>
+                <td>{{ cocktail.instructions }}</td>
+                <td>{{ cocktail.isAlcoholic ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}">show</a>
+                    <a href="{{ path('cocktail_edit', {'id': cocktail.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('cocktail_new') }}">Create new</a>
+{% endblock %}

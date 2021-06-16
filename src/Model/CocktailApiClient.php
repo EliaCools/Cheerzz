@@ -5,7 +5,6 @@ namespace App\Model;
 
 use App\Entity\Cocktail;
 use App\Entity\Ingredient;
-use JetBrains\PhpStorm\Pure;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -21,18 +20,9 @@ class CocktailApiClient
 
     private const SOURCE = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
-    private const DRINKS = 'drinks';
-    private const STR_ID = 'idDrink';
-    private const STR_NAME = 'strDrink';
-    private const STR_ALCOHOLIC = 'strAlcoholic';
-    private const STR_IMAGE = 'strThumb';
-    private const STR_GLASS = 'strGlass';
-    private const STR_CATEGORY = 'strCategory';
-    private const STR_INSTRUCTIONS = 'strInstructions';
-
     //TODO: add instruction string suffixes for other languages at some point.
 
-    #[Pure] public function __construct(HttpClientInterface $client)
+    public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
         $this->converter = new JsonToObject();

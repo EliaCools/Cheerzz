@@ -56,8 +56,14 @@ $navLinks: #10ac97;
   bottom: 290px;
 }
 
-.divider {
-
+.divider img {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  top: 89vh;
+  left: 0;
+  right: 0;
 }
 
 .why {
@@ -67,11 +73,17 @@ $navLinks: #10ac97;
   padding: 20px 15px 20px 15px;
 }
 
+.call {
+    width: 100%;
+    height: 200vh;
+    background-color: #f52a02;
+    padding: 20px 15px 20px 15px;
+}
 
 .footer {
   width: 100%;
   position: relative;
-  color: $navLinks;
+  font-weight: bold;
   z-index: 1;
   background-color: #01a48f;
   bottom: 0;
@@ -90,11 +102,16 @@ $navLinks: #10ac97;
   flex-wrap: wrap;
 }
 
+.f-link {
+  font-weight: bold;
+  vertical-align: middle;
+}
+
 .footer-links {
   padding: 70px 15px 50px 15px;
 }
 
-.footer-links a {
+.footer-links, .copyright, .follow, .tagline, .f-link {
   color: ivory !important;
 }
 
@@ -114,7 +131,34 @@ $navLinks: #10ac97;
 .footer-logo {
   height: 190px;
   position: absolute;
-  top: -107px;
+  top: -155px;
+}
+
+.youtube {
+  top: 5px;
+  position: relative;
+}
+
+.bike {
+  height: 500px;
+  position: absolute;
+  top: -500px;
+  float: right;
+  left: 117px;
+  z-index: -1;
+}
+
+.street {
+  width: 100%;
+  height: 149px;
+  bottom: 0;
+  position: absolute;
+  top: -95px;
+  background: url(images/street.png) repeat-x;
+  transform: scale(1, 0.6);
+  background-size: contain;
+  animation: animated 20s linear infinite;
+  z-index: -1;
 }
 
 .footer-container {
@@ -125,3 +169,11 @@ $navLinks: #10ac97;
   padding: 0 var(--page-padding);
 }
 
+@keyframes animated {
+  from {
+    background-position-x: 1000px;
+  }
+  to {
+    background-position-x: 0;
+  }
+}

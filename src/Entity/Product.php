@@ -32,6 +32,35 @@ class Product
      */
     private $quantity;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $alcohol;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $abv;
+
+    /**
+     * Product constructor.
+     * @param $id
+     * @param $name
+     * @param $price
+     * @param $quantity
+     * @param $alcohol
+     * @param $abv
+     */
+    public function __construct($id, $name, $price, $quantity, $alcohol, $abv)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->price = $price;
+        $this->quantity = $quantity;
+        $this->alcohol = $alcohol;
+        $this->abv = $abv;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +98,30 @@ class Product
     public function setQuantity(float $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getAlcohol(): ?bool
+    {
+        return $this->alcohol;
+    }
+
+    public function setAlcohol(bool $alcohol): self
+    {
+        $this->alcohol = $alcohol;
+
+        return $this;
+    }
+
+    public function getAbv(): ?int
+    {
+        return $this->abv;
+    }
+
+    public function setAbv(int $abv): self
+    {
+        $this->abv = $abv;
 
         return $this;
     }

@@ -4,13 +4,12 @@
 namespace App\Tests;
 
 
-use App\Model\fractionsToDec;
+use App\Model\PartsToDec;
 use PHPUnit\Framework\TestCase;
-use function PHPUnit\Framework\stringContains;
 
 class PartsToDecimalTest extends TestCase
 {
-    public function dataProviderForReturnTotal(): array
+    public function dataProviderForPartsToDec(): array
     {
         return [
             [[0 => '3 parts', 1 => '5 parts'], [0 => '0.38 part', 1 => '0.63 part']],
@@ -21,12 +20,12 @@ class PartsToDecimalTest extends TestCase
 
     /**
      * function has to start with Test
-     * @dataProvider dataProviderForReturnTotal
+     * @dataProvider dataProviderForPartsToDec
      */
-    public function testReturnTotal(array $measures, $result): void
+    public function testPartsToDec(array $measures, $result): void
     {
-        $calc = new fractionsToDec();
-        $measures = $calc->fracToDec($measures);
+        $calc = new PartsToDec();
+        $measures = $calc->partsToDec($measures);
         self::assertSame($measures, $result);
     }
 }

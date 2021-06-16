@@ -6,9 +6,9 @@ namespace App\Model;
 
 use function PHPUnit\Framework\stringContains;
 
-class fractionsToDec
+class PartsToDec
 {
-    public function fracToDec(array $measures): array
+    public function partsToDec(array $measures): array
     {
         $total = 0;
         foreach ($measures as &$measure) {

@@ -6,10 +6,12 @@ namespace App\Model;
 use App\Entity\Cocktail;
 use App\Entity\Ingredient;
 use App\Model\CocktailApiClient;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpClient\Exception\JsonException;
 
 class JsonToObject
 {
+    #region constants
     //constants for navigating the API's cocktail Json
     private const DRINKS = 'drinks';
     private const STR_ID = 'idDrink';
@@ -22,6 +24,17 @@ class JsonToObject
     private const STR_CATEGORY = 'strCategory';
     private const STR_INSTRUCTIONS = 'strInstructions';
 
+    //constants for navigating the API's ingredient Json
+    private const INGREDIENTS = 'ingredients';
+    private const STR_ID_INGREDIENT = 'idIngredient';
+    private const STR_NAME_INGREDIENT = 'strIngredient';
+    private const STR_DESCRIPTION_INGREDIENT = 'strDescription';
+    private const STR_TYPE_INGREDIENT = 'strType';
+    private const STR_ALCOHOLIC_INGREDIENT = 'strAlcohol';
+
+    #endregion
+
+    #region Cocktail Conversion
     /**
      * @param string $jsonMultiple
      * @return Cocktail[]
@@ -55,7 +68,7 @@ class JsonToObject
      * @param array $decodedJson
      * @return Cocktail
      */
-    private function convertArrayToCocktail(array $decodedJson) : Cocktail
+    #[Pure] private function convertArrayToCocktail(array $decodedJson) : Cocktail
     {
         $isAlcoholic = strtolower($decodedJson[self::STR_ALCOHOLIC]) === 'alcoholic';
         $ingredients = [];
@@ -78,12 +91,56 @@ class JsonToObject
             $isAlcoholic);
     }
 
-    public function convertToIngredient(string $fetchSingleIngredient): Ingredient
-    {
-        //TODO: implement proper Json string to Ingredient function.
+    #endregion
 
-        return new Ingredient(0, "", "", false, "");
+    #region Ingredient Conversion
+    /**
+     * @param string $jsonSingle
+     * @return Ingredient
+     * @throws \JsonException
+     */
+    public function convertToIngredient(string $jsonSingle): Ingredient
+    {
+        $decoded = json_decode($jsonSingle, true, 512, JSON_THROW_ON_ERROR);
+
+        return $this->convertArrayToIngredient($decoded[self::INGREDIENTS][0]);
     }
 
+    /**
+     * @param string $jsonMultiple
+     * @return array
+     * @throws \JsonException
+     */
+    public function convertToIngredients(string $jsonMultiple): array
+    {
+        $decoded = json_decode($jsonMultiple, true, 512, JSON_THROW_ON_ERROR);
+        $ingredients = [];
+
+        foreach($decoded[self::INGREDIENTS] as $item)
+        {
+            $ingredients[] = $this->convertArrayToIngredient($item);
+        }
+
+        return $ingredients;
+    }
+
+    /**
+     * @param array $decodedJson
+     * @return Ingredient
+     */
+    #[Pure] private function convertArrayToIngredient(array $decodedJson) : Ingredient
+    {
+        $isAlcoholic = strtolower($decodedJson[self::STR_ALCOHOLIC_INGREDIENT]) === 'yes';
+
+        return new Ingredient(
+            $decodedJson[self::STR_ID_INGREDIENT],
+            $decodedJson[self::STR_NAME_INGREDIENT],
+            $decodedJson[self::STR_DESCRIPTION_INGREDIENT],
+            $isAlcoholic,
+            $decodedJson[self::STR_TYPE_INGREDIENT]
+        );
+    }
+
+    #endregion
 
 }

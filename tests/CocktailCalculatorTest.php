@@ -29,7 +29,6 @@ class CocktailCalculatorTest extends TestCase
         self::assertEquals(2, $calculator->calculateMeasurement('1 1/2 2/4 ml'));
 
         self::assertEquals(29.57, $calculator->calculateMeasurement('1 oz'));
-
         self::assertEquals(14.79, $calculator->calculateMeasurement('1 tbsp'));
         self::assertEquals(4.93, $calculator->calculateMeasurement('1 tsp'));
         self::assertEquals(44.36, $calculator->calculateMeasurement('1 shot'));

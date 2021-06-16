@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-
+use App\Entity\Cocktail;
 use http\Exception\InvalidArgumentException;
 use JetBrains\PhpStorm\Pure;
 
@@ -15,6 +15,23 @@ class CocktailCalculator
     private const TBSP_TO_ML = 14.79;
     private const SHOT_TO_ML = 44.36;
 
+    /**
+     * @param Cocktail $cocktail
+     * @return Quantity[]
+     */
+    public function CalculateIngredientQuantities(Cocktail $cocktail) : array
+    {
+        $ingredients = $cocktail->getIngredientsAndMeasurements();
+        $quantities = [];
+        foreach($ingredients AS $ingredient)
+        {
+            $name = $ingredient[0];
+            $strAmount = $ingredient[1];
+
+            $quantities[] = new Quantity($name,$this->calculateMeasurement($strAmount));
+        }
+        return $quantities;
+    }
     //<editor-fold desc="Conversion functions">
 
     private function convertOunceToMl(float $ounces): float
@@ -39,14 +56,14 @@ class CocktailCalculator
 
     public function fractionToFloat(int $numerator, int $denominator): float
     {
-        if($denominator === 0)
+        if ($denominator === 0)
         {
             throw new InvalidArgumentException('division by zero!');
         }
         return $numerator / $denominator;
     }
 
-    #[Pure] public function fractionStringToFloat(string $fraction): float
+    public function fractionStringToFloat(string $fraction): float
     {
         $values = explode('/', $fraction, 3);
         return $this->fractionToFloat((int)$values[0], (int)$values[1]);
@@ -87,6 +104,7 @@ class CocktailCalculator
                 };
             }
         }
+        return $value;
     }
 
     //</editor-fold>

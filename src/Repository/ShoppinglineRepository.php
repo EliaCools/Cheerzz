@@ -19,6 +19,8 @@ class ShoppinglineRepository extends ServiceEntityRepository
         parent::__construct($registry, ShoppingLine::class);
     }
 
+
+
     // /**
     //  * @return ShoppingLine[] Returns an array of ShoppingLine objects
     //  */

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\ShoppingLine;
 use App\Form\ProductType;
+use App\Form\ShoppingLineType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/', name: 'product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository, Request $request): Response
     {
+        $shoppingLine = new ShoppingLine();
+        $form = $this->createForm(ShoppingLineType::class, $shoppingLine );
+        $form->handleRequest($request);
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
+            'form' => $form->createView()
         ]);
     }
 
@@ -27,6 +34,7 @@ class ProductController extends AbstractController
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -39,6 +47,7 @@ class ProductController extends AbstractController
         return $this->render('product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
+            'user' => $this->getUser()
         ]);
     }
 

@@ -25,7 +25,13 @@
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    <form method="post" action="{{ path('shopping_line_new') }}">
+                        <input type="text" value='{{ product.id }}' name="product" hidden>
+                        <input type="number" name="quantity">
+                        <input type="submit" value="add to basket">
+                    </form>
                 </td>
+
             </tr>
         {% else %}
             <tr>

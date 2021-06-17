@@ -3,28 +3,31 @@
 namespace App\Controller;
 
 use App\Entity\ShoppingCart;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ShoppingCardController extends AbstractController
+class ShoppingCartController extends AbstractController
 {
-    #[Route('/shopping/card', name: 'shopping_card')]
+    #[Route('/shopping/cart', name: 'shopping_cart')]
     public function index(): Response
     {
         return $this->render('shopping_card/index.html.twig', [
             'controller_name' => 'ShoppingCardController',
         ]);
     }
-    #[Route('my/shopping/card', name: 'shopping_card')]
+    #[Route('my/shoppingcart', name: 'my_shopping_cart')]
     public function shoppingCard(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-
+        /** @var User $user */
         $user = $this->getUser();
-        if($user->getSingleShoppingCart() === null){
-            $shoppingCard = new ShoppingCart($user);
-        }else{
+
+        $shoppingCard = new ShoppingCart($user);
+
+        if($user->getSingleShoppingCart()){
             $shoppingCard = $user->getSingleShoppingCart();
         }
 

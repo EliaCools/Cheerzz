@@ -19,7 +19,18 @@ class ShoppinglineRepository extends ServiceEntityRepository
         parent::__construct($registry, ShoppingLine::class);
     }
 
+    /**
+     * @return ShoppingLine Returns an array of ShoppingLine objects
+     */
+    public function findByProductAndUser(int $productId){
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.product = :val')
+            ->leftJoin()
+            ->setParameter('val', $productId)
+            ->getQuery()
+            ->getResult();
 
+    }
 
     // /**
     //  * @return ShoppingLine[] Returns an array of ShoppingLine objects

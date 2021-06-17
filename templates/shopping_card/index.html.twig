@@ -10,7 +10,13 @@
 
 {% for shoppingLine in shopping_lines %}
 
-    {{ shoppingLine.Product }} {{ shoppingLine.quantity }}<br/>
 
+    {{ shoppingLine.Product }}{{ shoppingLine.quantity }}
+    <form method="post" action="{{ path('shopping_line_new') }}" class="form-check-inline">
+        <input type="text" value='{{ shoppingLine.Product.id }}' name="product" hidden>
+        <input type="number" name="quantity" value="0" >
+        <input type="submit" value="change amount">
+    </form>
+    <br/>
 {% endfor%}
 {% endblock %}

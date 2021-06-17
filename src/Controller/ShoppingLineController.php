@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\ShoppingCart;
 use App\Entity\ShoppingLine;
+use App\Entity\User;
 use App\Form\ShoppingLineType;
 use App\Repository\ProductRepository;
 use App\Repository\ShoppinglineRepository;
 use App\Repository\UserRepository;
+use App\Service\ShoppingLinePreparer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,48 +39,38 @@ class ShoppingLineController extends AbstractController
     #[Route('/new', name: 'shopping_line_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
-        $productId = $request->get('product');
-        $quantity = $request->get('quantity');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        /** @var User $user */
         $user = $this->getUser();
 
-        if($this->shoppinglineRepository->findOneBy(['product'=> $productId])){
+        $productId = $request->get('product');
+        $quantity = $request->get('quantity');
 
-            $shoppingLine = $this->shoppinglineRepository->findOneBy(['product'=> $productId, ['use']]);
-            $current = $shoppingLine->getQuantity();
-            $current += $quantity;
-            $shoppingLine->setQuantity($current);
+        $shoppingCart = new ShoppingCart($user);
+        $dbShoppingCartId = null;
 
-        }else{
-            $shoppingLine = new ShoppingLine();
-            $shoppingLine->setProduct($this->productRepository->findOneBy(['id'=> $productId]));
-            $shoppingLine->setQuantity($quantity);
+        if($user->getSingleShoppingCart()){
+            $shoppingCart = $user->getSingleShoppingCart();
+            $dbShoppingCartId = $user->getSingleShoppingCart()->getId();
         }
 
 
-
-     //   $form = $this->createForm(ShoppingLineType::class, $shoppingLine);
-     //   $form->handleRequest($request);
-
+        $shoppingLinePreparer = new ShoppingLinePreparer($this->shoppinglineRepository, $this->productRepository);
+        $shoppingLine = $shoppingLinePreparer->prepareShoppingLine($productId, $dbShoppingCartId, $quantity);
 
 
-        if($user->getSingleShoppingCart() === null){
-            $shoppingCard = new ShoppingCart($user);
-        }else{
-            $shoppingCard = $user->getSingleShoppingCart();
-        }
-
-
-
-
-
-            $shoppingLine->setShoppingCart($shoppingCard);
+            $shoppingLine->setShoppingCart($shoppingCart);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($shoppingLine);
             $entityManager->flush();
 
-            return $this->redirectToRoute('shopping_line_index');
+            return $this->redirectToRoute('my_shopping_cart');
 
     }
+
+
+
 
     #[Route('/{id}', name: 'shopping_line_show', methods: ['GET'])]
     public function show(ShoppingLine $shoppingLine): Response

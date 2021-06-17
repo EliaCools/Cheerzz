@@ -18,13 +18,10 @@ class ProductController extends AbstractController
     #[Route('/', name: 'product_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository, Request $request): Response
     {
-        $shoppingLine = new ShoppingLine();
-        $form = $this->createForm(ShoppingLineType::class, $shoppingLine );
-        $form->handleRequest($request);
 
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
-            'form' => $form->createView()
+
         ]);
     }
 

@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
 body, html {
   overflow-x: hidden;
-  height: auto;
 }
 
 .bg-light {
@@ -223,6 +227,96 @@ body, html {
   background: #5f27cd;
 }
 
+.footer {
+  position: absolute;
+  height: 345px;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold;
+  z-index: 1;
+  background-color: #01a48f;
+}
+
+.main-footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.f-link {
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.footer-links {
+  padding: 70px 15px 50px 15px;
+}
+
+.footer-links, .copyright, .follow, .tagline, .f-link {
+  color: ivory !important;
+}
+
+.social-links {
+  display: flex;
+}
+
+.social-icons {
+  height: 20px;
+  width: 20px;
+}
+
+.row {
+  flex-wrap: nowrap;
+}
+
+.footer-logo {
+  height: 190px;
+  position: relative;
+  top: -120px;
+}
+
+.youtube {
+  top: 5px;
+  position: relative;
+}
+
+.bike {
+  height: 500px;
+  position: relative;
+  top: -500px;
+  float: right;
+  left: 117px;
+  z-index: -1;
+}
+
+.street {
+  width: 100%;
+  height: 149px;
+  bottom: 0;
+  position: absolute;
+  top: -95px;
+  background: url(images/street.png) repeat-x;
+  transform: scale(1, 0.6);
+  background-size: contain;
+  animation: animated 20s linear infinite;
+  z-index: -1;
+}
+
+.footer-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 0 var(--page-padding);
+}
+
 @keyframes animated {
   from {
     background-position-x: 1000px;
@@ -231,7 +325,24 @@ body, html {
     background-position-x: 0;
   }
 }
-/* FOOTER */
+/* The footer is fixed to the bottom of the page */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold;
+  z-index: 1;
+}
+
+@media (max-height: 800px) {
+  footer {
+    position: static;
+  }
+
+  header {
+    padding-top: 40px;
+  }
+}
 .footer-distributed {
   background-color: #01a48f;
   box-sizing: border-box;
@@ -239,6 +350,7 @@ body, html {
   text-align: left;
   font: bold 16px sans-serif;
   padding: 50px 50px 60px 50px;
+  margin-top: 80px;
 }
 
 .footer-distributed .footer-left,
@@ -262,12 +374,6 @@ body, html {
 }
 
 /* The company logo */
-.footer-logo {
-  height: 190px;
-  position: relative;
-  top: -120px;
-}
-
 .footer-distributed .footer-left img {
   width: 30%;
 }
@@ -277,56 +383,12 @@ body, html {
 }
 
 /* Footer links */
-.social-links {
-  display: flex;
-}
-
-.social-icons {
-  height: 20px;
-  width: 20px;
-}
-
-.youtube {
-  top: 5px;
-  position: relative;
-}
-
-.bike {
-  height: 500px;
-  position: relative;
-  top: -500px;
-  float: right;
-  left: 117px;
-  z-index: -1;
-}
-
-.parallax-container {
-  position: relative;
-}
-
-.street {
-  width: 100%;
-  height: 149px;
-  bottom: 0;
-  position: absolute;
-  top: -95px;
-  background: url(images/street.png) repeat-x;
-  transform: scale(1, 0.6);
-  background-size: contain;
-  animation: animated 20s linear infinite;
-  z-index: -1;
-}
-
-.footer-links {
-  padding: 70px 15px 50px 15px;
-  display: inline-block;
-  line-height: 1.8;
-  text-decoration: none;
+.footer-distributed .footer-links {
   color: #fffff0;
   margin: 20px 0 12px;
 }
 
-.footer-distributed a {
+.footer-distributed .footer-links a {
   display: inline-block;
   line-height: 1.8;
   text-decoration: none;
@@ -441,7 +503,7 @@ body, html {
 #contact {
   position: absolute;
   left: 50%;
-  top: 63%;
+  top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -534,11 +596,6 @@ body, html {
   filter: grayscale(0.2);
   box-shadow: 2px 2px 30px lightblue;
   border: 2px solid ivory;
-}
-
-.contact-container {
-  padding: 80px 0 50px 0;
-  height: 800px;
 }
 
 @media only screen and (max-width: 290px) {

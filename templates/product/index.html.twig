@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Our products{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+    <h1>Our products</h1>
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     <table class="table">
         <thead>
@@ -16,6 +21,7 @@
             </tr>
         </thead>
         <tbody>
+        <a href="{{ path('my_shopping_cart') }}"> Go to shopping cart</a>
         {% for product in products %}
             <tr>
                 <td>{{ product.id }}</td>
@@ -28,6 +34,7 @@
                     <form method="post" action="{{ path('shopping_line_new') }}">
                         <input type="text" value='{{ product.id }}' name="product" hidden>
                         <input type="number" name="quantity">
+                        <input type="text" name="isEdit" value="" hidden>
                         <input type="submit" value="add to basket">
                     </form>
                 </td>

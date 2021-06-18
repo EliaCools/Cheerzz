@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ShoppingCardController!{% endblock %}
+{% block title %}My ShoppingCart{% endblock %}
 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
+<h1>my shopping cart</h1>
 
 {% for shoppingLine in shopping_lines %}
 
 
-    {{ shoppingLine.Product }}{{ shoppingLine.quantity }}
+    {{ shoppingLine.Product }}
     <form method="post" action="{{ path('shopping_line_new') }}" class="form-check-inline">
         <input type="text" value='{{ shoppingLine.Product.id }}' name="product" hidden>
-        <input type="number" name="quantity" value="0" >
+        <input type="number" name="quantity" value="{{ shoppingLine.quantity }}" >
+        <input type="text" name="isEdit" value="true" hidden>
         <input type="submit" value="change amount">
     </form>
+    {{ include('shopping_line/_delete_form.html.twig') }}
     <br/>
 {% endfor%}
 {% endblock %}

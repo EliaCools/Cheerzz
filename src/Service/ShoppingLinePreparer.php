@@ -20,7 +20,7 @@ class ShoppingLinePreparer
 
     }
 
-    public function prepareShoppingLine(int $productId, ?int $shoppingCartId, int  $quantity): ShoppingLine
+    public function prepareShoppingLine(int $productId, ?int $shoppingCartId, int  $quantity, bool $isEdit): ShoppingLine
     {
 
         if($this->shoppingLineRepository->findOneBy(['product'=> $productId, 'shoppingCart'=> $shoppingCartId])){
@@ -28,6 +28,10 @@ class ShoppingLinePreparer
             $current = $shoppingLine->getQuantity();
             $current += $quantity;
             $shoppingLine->setQuantity($current);
+
+            if($isEdit === true){
+                $shoppingLine->setQuantity($quantity);
+            }
 
         }else{
 

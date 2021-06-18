@@ -28,14 +28,6 @@ class ShoppingLineController extends AbstractController
         $this->productRepository = $productRepository;
     }
 
-    #[Route('/', name: 'shopping_line_index', methods: ['GET'])]
-    public function index(ShoppinglineRepository $shoppinglineRepository): Response
-    {
-        return $this->render('shopping_line/index.html.twig', [
-            'shopping_lines' => $shoppinglineRepository->findAll(),
-        ]);
-    }
-
     #[Route('/new', name: 'shopping_line_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -46,6 +38,7 @@ class ShoppingLineController extends AbstractController
 
         $productId = $request->get('product');
         $quantity = $request->get('quantity');
+        $isEdit = $request->get('isEdit');
 
         $shoppingCart = new ShoppingCart($user);
         $dbShoppingCartId = null;
@@ -57,7 +50,7 @@ class ShoppingLineController extends AbstractController
 
 
         $shoppingLinePreparer = new ShoppingLinePreparer($this->shoppinglineRepository, $this->productRepository);
-        $shoppingLine = $shoppingLinePreparer->prepareShoppingLine($productId, $dbShoppingCartId, $quantity);
+        $shoppingLine = $shoppingLinePreparer->prepareShoppingLine($productId, $dbShoppingCartId, $quantity, $isEdit);
 
 
             $shoppingLine->setShoppingCart($shoppingCart);
@@ -65,37 +58,14 @@ class ShoppingLineController extends AbstractController
             $entityManager->persist($shoppingLine);
             $entityManager->flush();
 
-            return $this->redirectToRoute('my_shopping_cart');
+        $this->addFlash(
+            'notice',
+            'successfully added to your shopping cart'
+        );
 
-    }
 
+            return $this->redirectToRoute('product_index');
 
-
-
-    #[Route('/{id}', name: 'shopping_line_show', methods: ['GET'])]
-    public function show(ShoppingLine $shoppingLine): Response
-    {
-        return $this->render('shopping_line/show.html.twig', [
-            'shopping_line' => $shoppingLine,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'shopping_line_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, ShoppingLine $shoppingLine): Response
-    {
-        $form = $this->createForm(ShoppingLineType::class, $shoppingLine);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('shopping_line_index');
-        }
-
-        return $this->render('shopping_line/edit.html.twig', [
-            'shopping_line' => $shoppingLine,
-            'form' => $form->createView(),
-        ]);
     }
 
     #[Route('/{id}', name: 'shopping_line_delete', methods: ['POST'])]
@@ -107,6 +77,6 @@ class ShoppingLineController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('shopping_line_index');
+        return $this->redirectToRoute('my_shopping_cart');
     }
 }

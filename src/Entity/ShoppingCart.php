@@ -22,7 +22,7 @@ class ShoppingCart
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private $name = 'active card';
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="shoppingCarts")
@@ -36,9 +36,10 @@ class ShoppingCart
     private $shoppingLines;
 
 
-    public function __construct()
+    public function __construct(User $customer)
     {
         $this->shoppingLines = new ArrayCollection();
+        $this->customer = $customer;
     }
 
     public function getId(): ?int

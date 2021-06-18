@@ -29,7 +29,7 @@ class ShoppingLine
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ShoppingCart::class, inversedBy="shoppingLines")
+     * @ORM\ManyToOne(targetEntity=ShoppingCart::class, inversedBy="shoppingLines", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $shoppingCart;

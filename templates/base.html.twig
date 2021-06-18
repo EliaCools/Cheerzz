@@ -27,16 +27,20 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+
         <footer class="footer-distributed">
-            <div class="street parallax" id="parallax"></div>
+            <div class="parallax-container">
+                <div class="street"></div>
+            </div>
+
             <div class="footer-left">
-                <img class="footer-logo" src="../public/images/brandname.svg" alt="brandName">
+                <img class="footer-logo" src="images/brandname.svg" alt="brandName">
                 <h3>Cocktails<span>freshly served at your home!</span></h3>
 
                 <p class="footer-links">
                     <a href="#">Home</a>
                     |
-                    <a href="#">About us</a>
+                    <a href="{{ path('contact') }}">About us</a>
                     |
                     <a href="#">Contact</a>
                 </p>
@@ -46,7 +50,7 @@
 
             <div class="footer-center">
                 <div>
-                    <p><span>Justitiestraat, 2018 Antwerpen</p>
+                    <p><span>Justitiestraat, 2018 Antwerpen</span></p>
                 </div>
 
                 <div>
@@ -63,11 +67,11 @@
                     Making summers greater than ever with our homemade cocktails at your door, for you to enjoy or made live by one of our bartenders</p>
                 <div class="social-links footer-links">
                     <a href="#" target="_blank" rel="noopener" class="socials nav-link">
-                        <img class="social-icons" src="../public/images/facebook.svg" alt="facebook"></a>
+                        <img class="social-icons" src="images/facebook.svg" alt="facebook"></a>
                     <a href="#" target="_blank" rel="noopener" class="socials nav-link">
-                        <img class="social-icons" src="../public/images/instagram.svg" alt="instagram"></a>
+                        <img class="social-icons" src="images/instagram.svg" alt="instagram"></a>
                     <a href="#" target="_blank" rel="noopener" class="socials nav-link">
-                        <img class="youtube social-icons" src="../public/images/youtube.svg" alt="youtube"></a>
+                        <img class="youtube social-icons" src="images/youtube.svg" alt="youtube"></a>
                 </div>
             </div>
         </footer>

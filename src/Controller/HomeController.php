@@ -13,10 +13,11 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $youtubeApi = new YoutubeApiClient($this->getParameter('app.youtube_api_key'));
-        $test = $youtubeApi->getTitle('blue margarita');
+        $test = $youtubeApi;
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'cocktail_url' => $test
         ]);
     }
 }

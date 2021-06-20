@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('shopping_line_new') }}" class="form-check-inline" >
+    <input type="text" value='{{ shoppingLine.Product.id }}' name="product" hidden>
+    <input type="text" name="minusOne" value="true"  hidden>
+    <input type="submit" value="-">
+</form>

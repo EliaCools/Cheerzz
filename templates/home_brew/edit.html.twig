@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit HomeBrew{% endblock %}
+
+{% block body %}
+    <h1>Edit HomeBrew</h1>
+
+    {{ include('home_brew/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('home_brew_index') }}">back to list</a>
+
+    {{ include('home_brew/_delete_form.html.twig') }}
+{% endblock %}

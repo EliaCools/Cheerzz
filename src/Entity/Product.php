@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,33 +34,12 @@ class Product
      */
     private $quantity;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $alcohol;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $abv;
 
-    /**
-     * Product constructor.
-     * @param $id
-     * @param $name
-     * @param $price
-     * @param $quantity
-     * @param $alcohol
-     * @param $abv
-     */
-    public function __construct($id, $name, $price, $quantity, $alcohol, $abv)
+
+    public function __construct()
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->price = $price;
-        $this->quantity = $quantity;
-        $this->alcohol = $alcohol;
-        $this->abv = $abv;
+        $this->orderLines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,27 +83,10 @@ class Product
         return $this;
     }
 
-    public function getAlcohol(): ?bool
+    public function __toString()
     {
-        return $this->alcohol;
+       return $this->name;
     }
 
-    public function setAlcohol(bool $alcohol): self
-    {
-        $this->alcohol = $alcohol;
 
-        return $this;
-    }
-
-    public function getAbv(): ?int
-    {
-        return $this->abv;
-    }
-
-    public function setAbv(int $abv): self
-    {
-        $this->abv = $abv;
-
-        return $this;
-    }
 }

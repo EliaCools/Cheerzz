@@ -31,14 +31,14 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        /** @var User $user */
-        $user = $this->getUser();
-
-       $shoppingCart = $user->getSingleShoppingCart();
+//        /** @var User $user */
+//        $user = $this->getUser();
+//
+//       $shoppingCart = $user->getSingleShoppingCart();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'shoppingCart' => $shoppingCart
+            //'shoppingCart' => $shoppingCart
         ]);
     }
     #[Route('/contact', name: 'contact')]

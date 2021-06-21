@@ -44,10 +44,10 @@ class CocktailController extends AbstractController
     }
 
     #[Route('/{id}', name: 'cocktail_show', methods: ['GET'])]
-    public function show(Cocktail $cocktail): Response
+    public function show(int $id, CocktailApiClient $client): Response
     {
         return $this->render('cocktail/show.html.twig', [
-            'cocktail' => $cocktail,
+            'cocktail' => $client->fetchCocktailById($id),
         ]);
     }
 

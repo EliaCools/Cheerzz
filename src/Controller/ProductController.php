@@ -6,7 +6,9 @@ use App\Entity\Product;
 use App\Entity\ShoppingLine;
 use App\Form\ProductType;
 use App\Form\ShoppingLineType;
+use App\Model\CocktailApiClient;
 use App\Repository\ProductRepository;
+use http\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,4 +87,34 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('product_index');
     }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLSmall(string $ingredientName): string
+    {
+        return "www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Small.png";
+    }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLMedium(string $ingredientName): string
+    {
+        return "www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Medium.png";
+    }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLLarge(string $ingredientName): string
+    {
+        return "www.thecocktaildb.com/images/ingredients/" . $ingredientName . ".png";
+    }
+
+
+
 }

@@ -57,11 +57,15 @@ class JsonToObject
      * @return Cocktail
      * @throws \JsonException
      */
-    public function convertToCocktail(string $jsonSingle): Cocktail
+    public function convertToCocktail(string $jsonSingle): ?Cocktail
     {
         $decoded = json_decode($jsonSingle, true, 512, JSON_THROW_ON_ERROR);
 
-        return $this->convertArrayToCocktail($decoded[self::DRINKS][0]);
+        if($decoded[self::DRINKS] === null)
+        {
+            return null;
+        }
+        return $this->convertArrayToCocktail($decoded[self::DRINKS]['0']);
     }
 
     /**
@@ -99,11 +103,15 @@ class JsonToObject
      * @return Ingredient
      * @throws \JsonException
      */
-    public function convertToIngredient(string $jsonSingle): Ingredient
+    public function convertToIngredient(string $jsonSingle): ?Ingredient
     {
         $decoded = json_decode($jsonSingle, true, 512, JSON_THROW_ON_ERROR);
 
-        return $this->convertArrayToIngredient($decoded[self::INGREDIENTS][0]);
+        if($decoded[self::INGREDIENTS] === null)
+        {
+            return null;
+        }
+        return $this->convertArrayToIngredient($decoded[self::INGREDIENTS]['0']);
     }
 
     /**
@@ -128,9 +136,9 @@ class JsonToObject
      * @param array $decodedJson
      * @return Ingredient
      */
-    #[Pure] private function convertArrayToIngredient(array $decodedJson) : Ingredient
+    #[Pure] private function convertArrayToIngredient(array $decodedJson) : ?Ingredient
     {
-        $isAlcoholic = strtolower($decodedJson[self::STR_ALCOHOLIC_INGREDIENT]) === 'yes';
+        $isAlcoholic = strtolower((string)$decodedJson[self::STR_ALCOHOLIC_INGREDIENT]) === 'yes';
 
         return new Ingredient(
             $decodedJson[self::STR_ID_INGREDIENT],

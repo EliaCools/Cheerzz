@@ -10,10 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/home/brew')]
 class HomeBrewController extends AbstractController
 {
+    /**
+     * @param HomeBrewRepository $homeBrewRepository
+     * @return Response
+     * @isGranted ("ROLE_ADMIN")
+     */
     #[Route('/', name: 'home_brew_index', methods: ['GET'])]
     public function index(HomeBrewRepository $homeBrewRepository): Response
     {
@@ -21,6 +27,7 @@ class HomeBrewController extends AbstractController
             'home_brews' => $homeBrewRepository->findAll(),
         ]);
     }
+
 
     #[Route('/new', name: 'home_brew_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -30,7 +37,6 @@ class HomeBrewController extends AbstractController
          */
         $user = $this->getUser();
         $homeBrew = new HomeBrew($user);
-        $homeBrew->setIngredientsAndMeasurements([[]]);
 
         $form = $this->createForm(HomeBrewType::class, $homeBrew);
         $form->handleRequest($request);

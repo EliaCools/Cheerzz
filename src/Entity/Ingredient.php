@@ -24,17 +24,17 @@ class Ingredient
     /**
      * @ORM\Column(type="text")
      */
-    private string $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private bool $isAlcoholic;
+    private ?bool $isAlcoholic;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $type;
+    private ?string $type;
 
     /**
      * Ingredient constructor.

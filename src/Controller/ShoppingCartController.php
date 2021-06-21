@@ -33,10 +33,12 @@ class ShoppingCartController extends AbstractController
             $shoppingCard = $user->getSingleShoppingCart();
         }
 
+
         return $this->render('shopping_card/index.html.twig', [
             'controller_name' => 'ShoppingCardController',
             'shopping_lines' => $shoppingCard->getShoppingLines(),
-            'product' => $products
+            'product' => $products,
+            'shoppincart' => $shoppingCard
 
         ]);
     }

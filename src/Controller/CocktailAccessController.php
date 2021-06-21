@@ -17,9 +17,6 @@ class CocktailAccessController extends AbstractController
         $response = $jsonToObject->converToObject();
             dd($response);
         //$response = $client->fetchCocktailsByFirstLetter('a');
-        return $this->render('cocktail_access/index.html.twig', [
-            'controller_name' => 'CocktailAccessController',
-            'api_response' => $response,
-        ]);
+
     }
 }

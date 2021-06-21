@@ -14,11 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/cocktail')]
 class CocktailController extends AbstractController
 {
-    #[Route('/', name: 'cocktail_index', methods: ['GET'])]
-    public function index(CocktailApiClient $cocktailClient): Response
+    #[Route('/{firstCharacter}', name: 'cocktail_index', methods: ['GET'])]
+    public function index(CocktailApiClient $cocktailClient, string $firstCharacter): Response
     {
         return $this->render('cocktail/index.html.twig', [
-        'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter('a'),
+        'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter($firstCharacter),
         ]);
     }
 

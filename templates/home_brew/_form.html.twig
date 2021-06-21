@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+
+{{ form_widget(form.name) }}
+{{ form_widget(form.glass) }}
+
+<ul id="ingredientsAndMeasurements-fields-list"
+    data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"
+    data-widget-tags="{{ 'li'|e }}"
+    data-widget-counter="{{ form.ingredientsAndMeasurements|length }}">
+    {% for ingredientsAndMeasurementsField in form.ingredientsAndMeasurements %}
+        <li>
+            {{ form_errors(ingredientsAndMeasurementsField) }}
+            {{ form_widget(ingredientsAndMeasurementsField) }}
+        </li>
+    {% endfor %}
+</ul>
+<button type="button"
+        id="add-another-ingredient"
+        data-list-selector="#ingredientsAndMeasurements-fields-list">Add to your cocktail</button>
+
+{{ form_widget(form.instructions) }}
+
+<button type="submit" class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+{#<label for="find_Ingredient"></label>#}
+{#<input type="text" id="find_Ingredient" placeholder="check the bar for an ingredient">#}
+{#<button onclick="logIngredient()">Search</button>#}
+
+<script src="{{ asset('scripts/myOwnCocktail.js') }}"></script>

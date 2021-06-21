@@ -88,6 +88,33 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('product_index');
     }
 
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLSmall(string $ingredientName): string
+    {
+        return "www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Small.png";
+    }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLMedium(string $ingredientName): string
+    {
+        return "www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Medium.png";
+    }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLLarge(string $ingredientName): string
+    {
+        return "www.thecocktaildb.com/images/ingredients/" . $ingredientName . ".png";
+    }
+
 
 
 }

@@ -38,8 +38,10 @@
             </ul>
             </ul>
             <div class="cart-counter">
-                {% if shoppingCart  is not null %}
-                {{ shoppingCart.getTotalProducts() }}</div>
+                {% if shoppinCart is defined  %}
+                    {% if shoppingCart  is not null %}
+                        {{ shoppingCart.getTotalProducts() }}</div>
+                    {% endif %}
                 {% endif %}
         </div>
     </div>

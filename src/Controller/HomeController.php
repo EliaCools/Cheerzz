@@ -16,16 +16,6 @@ class HomeController extends AbstractController
     private ShoppingCartRepository $shoppingCartRepository;
 
 
-    /**
-     * HomeController constructor.
-     * @param ShoppinglineRepository $shoppingLineRepository
-     * @param ShoppingcartRepository $shoppingCartRepository
-     */
-    public function __construct(ShoppinglineRepository $shoppingLineRepository, ShoppingcartRepository $shoppingCartRepository)
-    {
-        $this->shoppingLineRepository = $shoppingLineRepository;
-        $this->shoppingCartRepository = $shoppingCartRepository;
-    }
 
 
     #[Route('/', name: 'home')]

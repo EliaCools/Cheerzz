@@ -43,7 +43,7 @@ class CocktailController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'cocktail_show', methods: ['GET'])]
+    #[Route('/{id}/show', name: 'cocktail_show', methods: ['GET'])]
     public function show(int $id, CocktailApiClient $client): Response
     {
         return $this->render('cocktail/show.html.twig', [
@@ -69,7 +69,7 @@ class CocktailController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'cocktail_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'cocktail_delete', methods: ['POST'])]
     public function delete(Request $request, Cocktail $cocktail): Response
     {
         if ($this->isCsrfTokenValid('delete'.$cocktail->getId(), $request->request->get('_token'))) {

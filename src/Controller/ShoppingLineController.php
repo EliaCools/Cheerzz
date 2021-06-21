@@ -56,7 +56,7 @@ class ShoppingLineController extends AbstractController
 
             $shoppingLine->setShoppingCart($shoppingCart);
             $entityManager = $this->getDoctrine()->getManager();
-            //@Todo isedit = true, skip redundant persist
+
             $entityManager->persist($shoppingLine);
             $entityManager->flush();
 

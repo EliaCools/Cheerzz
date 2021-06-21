@@ -31,10 +31,15 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
+        $shoppingCart = null;
+
         /** @var User $user */
         $user = $this->getUser();
 
-       $shoppingCart = $user->getSingleShoppingCart();
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

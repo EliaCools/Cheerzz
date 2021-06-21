@@ -37,7 +37,10 @@
                 </li>
             </ul>
             </ul>
-            <div class="cart-counter"> {{ shoppingCart.getTotalProducts() }}</div>
+            <div class="cart-counter">
+                {% if shoppingCart  is not null %}
+                {{ shoppingCart.getTotalProducts() }}</div>
+                {% endif %}
         </div>
     </div>
 </nav>

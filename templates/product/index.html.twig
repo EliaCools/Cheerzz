@@ -7,93 +7,23 @@
 
         <div class="small-container">
             <h2 class="products">Our Products</h2>
-            <h3 class="subtitle">Kits</h3>
+
+
             <div class="row">
-                <div class="col-4"><img src="{{ asset('images/moscow-cocktailkit.jpg')}}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
+                {% for product in products %}
+                <div class="col-4">
+                    <a href="{{ path('product_detailed',{'id': product.id} ) }}">
+                    <img src="{{ product.fetchIngredientImageURLMedium(product.name)}}" alt="cocktail">
+                    </a>
+                    <h4 class="text-center mx-auto">{{ product.name }}</h4>
+                    <p class="text-center mx-auto">{{ product.price }}</p>
                 </div>
-                <div class="col-4"><img src="{{ asset('images/moscow-cocktailkit.jpg')}}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
-                <div class="col-4"><img src="{{ asset('images/moscow-cocktailkit.jpg')}}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
-                <div class="col-4"><img src="{{ asset('images/moscow-cocktailkit.jpg')}}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
+                {% endfor %}
             </div>
-            <h3 class="subtitle">Ingredients</h3>
-            <div class="row">
-                <div class="col-4"><img src="{{ asset('images/gin-bottle.jpg')}}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
-                <div class="col-4"><img src="{{ asset('images/gin-herbs.jpg')}}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
-                <div class="col-4"> <img src="{{ asset('images/gin-bottle.jpg')}}" alt="">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
-                <div class="col-4"><img src="{{ asset('images/wodka-bottle.jpg') }}" alt="cocktail">
-                    <h4 class="text-center mx-auto">Cocktail Kit</h4>
-                    <p class="text-center mx-auto">50.00 euro</p>
-                </div>
-            </div>
+
+
         </div>
 
     </div>
-    <h1>Our products</h1>
-    {% for message in app.flashes('notice') %}
-        <div class="flash-notice">
-            {{ message }}
-        </div>
-    {% endfor %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        <a href="{{ path('my_shopping_cart') }}"> Go to shopping cart</a>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.quantity }}</td>
-                <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                    <form method="post" action="{{ path('shopping_line_new') }}">
-                        <input type="text" value='{{ product.id }}' name="product" hidden>
-                        <input type="number" name="quantity">
-                        <input type="text" name="isEdit" value="" hidden>
-                        <input type="submit" value="add to basket">
-                    </form>
-                </td>
-
-            </tr>
-
-
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('product_new') }}">Create new</a>
 {% endblock %}

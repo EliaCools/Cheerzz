@@ -69,7 +69,7 @@ class CocktailApiClient
      */
     public function fetchCocktailById(int $id): ?Cocktail
     {
-        $response = $this->fetchRequest("lookup.php?iid=$id");
+        $response = $this->fetchRequest("lookup.php?i=$id");
         return $this->converter->convertToCocktail($response->getContent());
     }
 

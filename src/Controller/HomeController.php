@@ -20,4 +20,11 @@ class HomeController extends AbstractController
             'cocktail_url' => $test
         ]);
     }
+    #[Route('/contact', name: 'contact')]
+    public function contact(): Response
+    {
+        return $this->render('/contact.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -56,6 +58,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private ?string $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ShoppingCart::class, mappedBy="customer", orphanRemoval=true)
+     */
+    private $shoppingCarts;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="customer", orphanRemoval=true)
+     */
+    private $purshasedOrders;
+
+
+    public function __construct()
+    {
+        $this->shoppingCarts = new ArrayCollection();
+        $this->purshasedOrders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -182,6 +201,75 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShoppingCart[]
+     */
+    public function getShoppingCarts(): Collection
+    {
+        return $this->shoppingCarts;
+    }
+
+    public function getSingleShoppingCart() : ?ShoppingCart
+    {
+        if(!empty($this->shoppingCarts)){
+            return $this->shoppingCarts[0];
+        }
+
+        return null;
+    }
+
+    public function addShoppingCart(ShoppingCart $shoppingCart): self
+    {
+        if (!$this->shoppingCarts->contains($shoppingCart)) {
+            $this->shoppingCarts[] = $shoppingCart;
+            $shoppingCart->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingCart(ShoppingCart $shoppingCart): self
+    {
+        if ($this->shoppingCarts->removeElement($shoppingCart)) {
+            // set the owning side to null (unless already changed)
+            if ($shoppingCart->getCustomer() === $this) {
+                $shoppingCart->setCustomer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getPurshasedOrders(): Collection
+    {
+        return $this->purshasedOrders;
+    }
+
+    public function addPurshasedOrder(Order $purshasedOrder): self
+    {
+        if (!$this->purshasedOrders->contains($purshasedOrder)) {
+            $this->purshasedOrders[] = $purshasedOrder;
+            $purshasedOrder->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePurshasedOrder(Order $purshasedOrder): self
+    {
+        if ($this->purshasedOrders->removeElement($purshasedOrder)) {
+            // set the owning side to null (unless already changed)
+            if ($purshasedOrder->getCustomer() === $this) {
+                $purshasedOrder->setCustomer(null);
+            }
+        }
 
         return $this;
     }

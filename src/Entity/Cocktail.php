@@ -15,42 +15,42 @@ class Cocktail
      * @ORM\Id
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private string $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $category;
+    private string $category;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $glass;
+    private string $glass;
 
     /**
      * @ORM\Column(type="array")
      */
-    private $ingredientsAndMeasurements = [];
+    private array $ingredientsAndMeasurements;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $instructions;
+    private string $instructions;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAlcoholic;
+    private bool $isAlcoholic;
 
     /**
      * Cocktail constructor.

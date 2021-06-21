@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our products{% endblock %}
+
+{% block body %}
+    <h1>Our products</h1>
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <a href="{{ path('my_shopping_cart') }}"> Go to shopping cart</a>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>
+                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    <form method="post" action="{{ path('shopping_line_new') }}">
+                        <input type="text" value='{{ product.id }}' name="product" hidden>
+                        <input type="number" name="quantity">
+                        <input type="text" name="isEdit" value="" hidden>
+                        <input type="submit" value="add to basket">
+                    </form>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('product_new') }}">Create new</a>
+{% endblock %}

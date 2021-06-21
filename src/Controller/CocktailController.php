@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Cocktail;
 use App\Form\CocktailType;
+use App\Model\CocktailApiClient;
 use App\Repository\CocktailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class CocktailController extends AbstractController
 {
     #[Route('/', name: 'cocktail_index', methods: ['GET'])]
-    public function index(CocktailRepository $cocktailRepository): Response
+    public function index(CocktailApiClient $cocktailClient): Response
     {
         return $this->render('cocktail/index.html.twig', [
-            'cocktails' => $cocktailRepository->findAll(),
+        'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter('a'),
         ]);
     }
 

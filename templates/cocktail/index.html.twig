@@ -24,10 +24,16 @@
             <tr>
                 <td>{{ cocktail.id }}</td>
                 <td>{{ cocktail.name }}</td>
-                <td>{{ cocktail.image }}</td>
+                <td><img src="{{ cocktail.image }}" width="60" height="60"></td>
                 <td>{{ cocktail.category }}</td>
                 <td>{{ cocktail.glass }}</td>
-                <td>{{ cocktail.ingredientsAndMeasurements ? cocktail.ingredientsAndMeasurements|join(', ') : '' }}</td>
+                <td>
+                    <ul>
+                        {% for items in cocktail.ingredientsAndMeasurements %}
+                        <li>{{ items|join(', ') }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
                 <td>{{ cocktail.instructions }}</td>
                 <td>{{ cocktail.isAlcoholic ? 'Yes' : 'No' }}</td>
                 <td>

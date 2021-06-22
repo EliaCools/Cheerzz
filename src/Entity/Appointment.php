@@ -21,13 +21,13 @@ class Appointment
     private int $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private User $requestedBy;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments",cascade={"persist"})
      */
     private User $assignedTo;
 
@@ -63,6 +63,14 @@ class Appointment
     public function getRequestedBy(): User
     {
         return $this->requestedBy;
+    }
+
+    /**
+     * @param User $requestedBy
+     */
+    public function setRequestedBy(User $requestedBy): void
+    {
+        $this->requestedBy = $requestedBy;
     }
 
 

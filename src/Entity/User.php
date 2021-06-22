@@ -60,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $phone;
 
     /**
-     * @ORM\OneToMany(targetEntity=ShoppingCart::class, mappedBy="customer", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ShoppingCart::class, mappedBy="customer", orphanRemoval=true,)
      */
     private $shoppingCarts ;
 
@@ -70,16 +70,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $purshasedOrders;
 
     /**
-     * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="requestedBy")
+     * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="requestedBy ")
      */
     private $appointments;
 
-
+    /**
+     * User constructor.
+     * @param $shoppingCarts
+     * @param $purshasedOrders
+     * @param  $appointments
+     */
     public function __construct()
     {
         $this->shoppingCarts = new ArrayCollection();
         $this->purshasedOrders = new ArrayCollection();
-        $this->appointments = new ArrayCollection();
+        $this->appointments = [];
     }
 
     public function getId(): ?int
@@ -290,23 +295,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addAppointment(Appointment $appointment): self
     {
-        if (!$this->appointments->contains($appointment)) {
+        if (!in_array($appointment,$this->appointments )) {
             $this->appointments[] = $appointment;
             $appointment->setRequestedBy($this);
         }
-
         return $this;
     }
 
-    public function removeAppointment(Appointment $appointment): self
-    {
-        if ($this->appointments->removeElement($appointment)) {
-            // set the owning side to null (unless already changed)
-            if ($appointment->getRequestedBy() === $this) {
-                $appointment->setRequestedBy(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function removeAppointment(Appointment $appointment): self
+//    {
+//        if ($this->appointments->removeElement($appointment)) {
+//            // set the owning side to null (unless already changed)
+//            if ($appointment->getRequestedBy() === $this) {
+//                $appointment->setRequestedBy(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 }

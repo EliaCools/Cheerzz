@@ -36,7 +36,7 @@ class AppointmentRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+
     public function findOneBySomeField($value): ?Appointment
     {
         return $this->createQueryBuilder('a')
@@ -46,5 +46,5 @@ class AppointmentRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

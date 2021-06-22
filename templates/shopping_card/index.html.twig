@@ -3,21 +3,9 @@
 {% block title %}My ShoppingCart{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<h1>my shopping cart</h1>
-
-
-
-
-
-
+<h1 class="text-center" >My shopping cart</h1>
 
     <div class="small-container cart-page">
-
-
         <table>
             {% for shoppingLine in shopping_lines %}
             <tr>
@@ -47,7 +35,15 @@
                 </td>
                 <td>€ {{ shoppingLine.calculatePrice(shoppingLine.product) }}</td>
             </tr>
+            {% else %}
+                <div class="d-flex justify-content-center">
+                    <p>Your shopping cart is empty. <br/>  <a href="{{ path('product_index') }}">Take a look at our products!</a> </p>
+
+
+                </div>
+
             {% endfor%}
+
         </table>
         {{ include('shopping_line/_add_bartender.html.twig') }}
     <div class="total-price">
@@ -56,9 +52,18 @@
             <tr>
                 <td>Total</td>
                 <td>€ {{ shoppingCart.totalPrice }}</td>
+
+            </tr>
+            <tr>
+                <td></td>
+                {% if shopping_lines|length > 0  %}
+                <td>{{ include('shopping_card/_process_order.html.twig') }}</td>
+                {% endif %}
             </tr>
         </table>
     </div>
+
+
 
 
     </div>

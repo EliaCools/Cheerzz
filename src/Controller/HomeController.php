@@ -12,11 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    private ShoppingLineRepository $shoppingLineRepository;
-    private ShoppingCartRepository $shoppingCartRepository;
-
-
-
 
     #[Route('/', name: 'home')]
     public function index(): Response

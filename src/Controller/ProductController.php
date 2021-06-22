@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Entity\ShoppingLine;
+use App\Entity\User;
 use App\Form\ProductType;
 use App\Form\ShoppingLineType;
 use App\Model\CocktailApiClient;
@@ -21,8 +22,19 @@ class ProductController extends AbstractController
     public function index(ProductRepository $productRepository, Request $request): Response
     {
 
+        $shoppingCart = null;
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
+            'shoppingCart' => $shoppingCart,
 
         ]);
     }
@@ -53,8 +65,17 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
     public function show(Product $product): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
         return $this->render('product/product_details.html.twig', [
             'product' => $product,
+            'shoppingCart' => $shoppingCart
         ]);
     }
 

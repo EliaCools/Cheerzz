@@ -9,7 +9,7 @@ const INGREDIENT_SUGGESTION = document.getElementById('ingredient_suggestion_opt
 async function fetchFromAPI(input) {
     let json = await fetch(API_INGREDIENT + input.toString());
     let source = await json.json();
-    
+
     return source['ingredients'][0].strIngredient;
 }
 
@@ -44,6 +44,7 @@ document.getElementById('add-another-ingredient').addEventListener('click',()=>{
 
     document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_ingredient`).addEventListener('keyup',showIngredientSuggestion)
 
+    counter++
     list.setAttribute('widget-counter',counter.toString());
 
 });

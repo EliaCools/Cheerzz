@@ -12,29 +12,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    private ShoppingLineRepository $shoppingLineRepository;
-    private ShoppingCartRepository $shoppingCartRepository;
-
-
-    /**
-     * HomeController constructor.
-     * @param ShoppinglineRepository $shoppingLineRepository
-     * @param ShoppingcartRepository $shoppingCartRepository
-     */
-    public function __construct(ShoppinglineRepository $shoppingLineRepository, ShoppingcartRepository $shoppingCartRepository)
-    {
-        $this->shoppingLineRepository = $shoppingLineRepository;
-        $this->shoppingCartRepository = $shoppingCartRepository;
-    }
-
 
     #[Route('/', name: 'home')]
     public function index(): Response
     {
+        $shoppingCart = null;
+
         /** @var User $user */
         $user = $this->getUser();
 
-       $shoppingCart = $user->getSingleShoppingCart();
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

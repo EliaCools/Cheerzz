@@ -19,7 +19,7 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-   /*** @return Product[] Returns an array of Product objects */
+    /*** @return Product[] Returns an array of Product objects */
 
     public function findWithoutServices()
     {
@@ -28,10 +28,22 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('val', 'Bartender Service')
             ->orderBy('p.id', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
+    /**
+     * @param $string
+     * @return Product
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByProductName(string $name): ?Product
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name = :val')
+            ->setParameter('val', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Product

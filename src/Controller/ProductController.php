@@ -73,6 +73,10 @@ class ProductController extends AbstractController
         if($user !== null){
             $shoppingCart = $user->getSingleShoppingCart();
         }
+//        else
+//        {
+//            $shoppingCart = null;
+//        }
 
 
         return $this->render('product/product_details.html.twig', [

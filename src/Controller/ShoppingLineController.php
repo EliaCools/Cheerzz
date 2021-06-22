@@ -39,7 +39,7 @@ class ShoppingLineController extends AbstractController
 
         $productId = $request->get('product');
         $quantity = $request->get('quantity');
-        $isEdit = $request->get('isEdit');
+
 
         $shoppingCart = new ShoppingCart($user);
         $dbShoppingCartId = null;
@@ -67,6 +67,7 @@ class ShoppingLineController extends AbstractController
             );
 
 
+
             return $this->redirectToRoute('product_index');
 
 
@@ -88,11 +89,13 @@ class ShoppingLineController extends AbstractController
         $dbShoppingCartId = $user->getSingleShoppingCart()->getId();
 
 
-        $shoppingLine = $this->shoppinglineRepository->findOneBy(['product'=> $productId, 'shoppingCart'=> $dbShoppingCartId]);
-        $shoppingLine->setQuantity($quantity);
+        $shoppingLinePreparer = new ShoppingLinePreparer($this->shoppinglineRepository, $this->productRepository);
+        $shoppingLine = $shoppingLinePreparer->prepareShoppingLine($productId, $dbShoppingCartId, $quantity);
 
 
+        $shoppingLine->setShoppingCart($shoppingCart);
         $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($shoppingLine);
         $entityManager->flush();
 
         $this->addFlash(

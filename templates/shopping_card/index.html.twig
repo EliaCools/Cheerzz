@@ -37,7 +37,7 @@
 
                         <div>
                             <p>{{ shoppingLine.Product.name}}</p>
-                            <small>{{ shoppingLine.Product.price }}</small>
+                            <small>€ {{ shoppingLine.Product.price }}</small>
                             {{ include('shopping_line/_delete_form.html.twig') }}
                             <a href="">Remove</a>
                         </div>
@@ -46,7 +46,7 @@
                 <td>
                     {{ include('shopping_line/_edit_amount.html.twig') }}
                 </td>
-                <td>{{ shoppingLine.calculatePrice(shoppingLine.product) }}</td>
+                <td>€ {{ shoppingLine.calculatePrice(shoppingLine.product) }}</td>
             </tr>
             {% endfor%}
         </table>
@@ -57,7 +57,7 @@
 
             <tr>
                 <td>Total</td>
-                <td>{{ shoppingCart.totalPrice }}</td>
+                <td>€ {{ shoppingCart.totalPrice }}</td>
             </tr>
         </table>
     </div>

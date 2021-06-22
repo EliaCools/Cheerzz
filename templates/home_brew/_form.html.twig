@@ -1,4 +1,4 @@
-<div class="col-8 mx-auto text-center">
+<div class="col-8 mx-auto text-center homebrewSection">
 
     {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
 
@@ -12,15 +12,20 @@
         {{ form_widget(form.glass, {'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
     </div>
 
-    <ul class="display-block" id="ingredientsAndMeasurements-fields-list"
+
+    <ul id="ingredients" style="list-style: none"></ul>
+
+    <ul class=""  style="list-style: none" id="ingredientsAndMeasurements-fields-list"
         data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"
         data-widget-tags="{{ 'li'|e }}"
         data-widget-counter="{{ form.ingredientsAndMeasurements|length }}">
         {% for ingredientsAndMeasurementsField in form.ingredientsAndMeasurements %}
-            <li>
-                {{ form_errors(ingredientsAndMeasurementsField) }}
-                {{ form_widget(ingredientsAndMeasurementsField) }}
-            </li>
+            <div class="text-center">
+                <li style="list-style: none">
+                    {{ form_errors(ingredientsAndMeasurementsField) }}
+                    {{ form_widget(ingredientsAndMeasurementsField) }}
+                </li>
+            </div>
         {% endfor %}
     </ul>
 
@@ -31,12 +36,13 @@
     <button type="button" id="add-another-ingredient" data-list-selector="#ingredientsAndMeasurements-fields-list">
         Add to your cocktail
     </button>
+    <button type="button" class="text-center" id="confirm-ingredient" style="display: none">Confirm ingredient</button>
+    <div class="text-center">
+        {{ form_row(form.instructions,{'attr':{'class':'text-center p-8'}}) }}
+        <button type="submit" class="btn-success text-center p-8">{{ button_label|default('Save') }}</button>
 
-    <button type="button" class="" id="confirm-ingredient" style="display: none">Confirm ingredient</button>
+    </div>
 
-    {{ form_row(form.instructions) }}
-
-    <button type="submit" class="btn-success d-block">{{ button_label|default('Save') }}</button>
 
     {{ form_end(form) }}
 

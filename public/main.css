@@ -808,6 +808,15 @@ tussen deze 2 comments hierboven  stoppen*/
 }
 
 /* MAKE YOUR OWN COCKTAIL STYLING */
+.title-homeBrew {
+  color: #e0ac1c;
+  padding: 60px;
+}
+
+.homebrewSection {
+  background-color: ivory;
+}
+
 /* MAKE YOUR OWN COCKTAIL STYLING OVER*/
 /* FOOTER STYLING */
 /* footer general */

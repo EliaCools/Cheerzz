@@ -17,7 +17,7 @@ class BrewDataType extends \Symfony\Component\Form\AbstractType
             ->add('measurement', TextType::class, [
                 'label' => 'amount',
                 'required'=>false,
-                'attr'=>['placeholder'=>'enter an amount','pattern'=>'[0-9]|[1-9][0-9]|[1-9][0-9][0-9]','class'=>'d-block'],
+                'attr'=>['placeholder'=>'enter an amount','pattern'=>'[0-9]|[1-9][0-9]|[1-9][0-9][0-9]'],
             ])->add('metric', ChoiceType::class, [
                 'label' => 'metric',
                 'required'=>false,
@@ -26,14 +26,15 @@ class BrewDataType extends \Symfony\Component\Form\AbstractType
                     'cl' => 'cl',
                     'part' => 'part',
                     'oz' => 'oz',],
-                'attr'=>['class'=>'d-block','placeholder'=>'ml'],
+                'attr'=>['placeholder'=>'ml'],
+                'attr'=>['placeholder'=>'ml'],
             ])
             ->add('ingredient', TextType::class, [
                 'label' => 'ingredient',
                 'required'=>false,
                 'attr'=>[
                     'autocomplete'=>'off',
-                    'class'=>'d-block find_ingredient',
+                    'class'=>'find_ingredient',
                     'list'=>'ingredient_suggestion',
                     'placeholder'=>'search for ingredient',
                     'required'=>true

@@ -74,7 +74,7 @@ class ShoppingLineController extends AbstractController
 
     }
 
-    #[Route('/edit/amount', name: 'edit_amount_from_cart', methods: ['GET', 'POST'])]
+    #[Route('/edit/amount', name: 'edit_amount_from_cart', methods: ['POST'])]
     public function editAmount(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -89,19 +89,51 @@ class ShoppingLineController extends AbstractController
         $dbShoppingCartId = $user->getSingleShoppingCart()->getId();
 
 
-        $shoppingLinePreparer = new ShoppingLinePreparer($this->shoppinglineRepository, $this->productRepository);
-        $shoppingLine = $shoppingLinePreparer->prepareShoppingLine($productId, $dbShoppingCartId, $quantity);
+        $shoppingLine= $this->shoppinglineRepository->findOneBy(['product' => $productId, 'shoppingCart' => $dbShoppingCartId]);
 
 
-        $shoppingLine->setShoppingCart($shoppingCart);
+        $shoppingLine->setQuantity($quantity);
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($shoppingLine);
         $entityManager->flush();
 
         $this->addFlash(
             'cardUpdate',
             'amount updated'
         );
+
+
+            return $this->redirectToRoute('my_shopping_cart');
+
+    }
+    #[Route('/add/bartender', name: 'add_bartender', methods: ['POST'])]
+    public function addBartender(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $productId = $request->get('product');
+        $quantity = $request->get('quantity');
+
+        $shoppingCart = new ShoppingCart($user);
+        $dbShoppingCartId = null;
+
+        if($user->getSingleShoppingCart()){
+            $shoppingCart = $user->getSingleShoppingCart();
+            $dbShoppingCartId = $user->getSingleShoppingCart()->getId();
+        }
+
+
+        $shoppingLinePreparer = new ShoppingLinePreparer($this->shoppinglineRepository, $this->productRepository);
+        $shoppingLine = $shoppingLinePreparer->prepareBartenderShoppingLine($productId,$dbShoppingCartId,$quantity);
+
+
+        $shoppingLine->setShoppingCart($shoppingCart);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($shoppingLine);
+        $entityManager->flush();
 
 
             return $this->redirectToRoute('my_shopping_cart');

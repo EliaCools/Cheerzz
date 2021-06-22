@@ -16,8 +16,10 @@
 
 
     <div class="small-container cart-page">
-        {% for shoppingLine in shopping_lines %}
+        {{ include('shopping_line/_add_bartender.html.twig') }}
+
         <table>
+            {% for shoppingLine in shopping_lines %}
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -26,7 +28,13 @@
             <tr>
                 <td>
                     <div class="cart-info">
+                        {% if shoppingLine.product.name != 'Bartender Service' %}
                         <img class="cart-img" src="https://www.thecocktaildb.com/images/ingredients/{{  shoppingLine.Product.name }}.png" alt="">
+                        {% endif %}
+                        {% if shoppingLine.product.name == 'Bartender Service' %}
+                        <img class="cart-img" src="https://cdn.theforkmanager.com/static/styles/blog_article_header_image/public/wp-blog/3-el-tenedor-atraer-clientes-bartender-restaurante.jpg?itok=RVUU9aiQ" alt="">
+                        {% endif  %}
+
                         <div>
                             <p>{{ shoppingLine.Product.name}}</p>
                             <small>{{ shoppingLine.Product.price }}</small>
@@ -40,8 +48,10 @@
                 </td>
                 <td>{{ shoppingLine.calculatePrice(shoppingLine.product) }}</td>
             </tr>
+            {% endfor%}
         </table>
-{% endfor%}
+
+
     <div class="total-price">
         <table>
 
@@ -51,6 +61,7 @@
             </tr>
         </table>
     </div>
+
 
     </div>
 

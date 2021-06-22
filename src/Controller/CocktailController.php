@@ -14,11 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/cocktail')]
 class CocktailController extends AbstractController
 {
+    private const ALPHABET = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0',];
+
     #[Route('/{firstCharacter}', name: 'cocktail_index', methods: ['GET'])]
     public function index(CocktailApiClient $cocktailClient, string $firstCharacter): Response
     {
         return $this->render('cocktail/index.html.twig', [
-        'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter($firstCharacter),
+            'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter($firstCharacter),
+            'alphabet' => self::ALPHABET,
         ]);
     }
 
@@ -29,7 +32,8 @@ class CocktailController extends AbstractController
         $form = $this->createForm(CocktailType::class, $cocktail);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cocktail);
             $entityManager->flush();
@@ -57,7 +61,8 @@ class CocktailController extends AbstractController
         $form = $this->createForm(CocktailType::class, $cocktail);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('cocktail_index');
@@ -72,7 +77,8 @@ class CocktailController extends AbstractController
     #[Route('/{id}/delete', name: 'cocktail_delete', methods: ['POST'])]
     public function delete(Request $request, Cocktail $cocktail): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$cocktail->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $cocktail->getId(), $request->request->get('_token')))
+        {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($cocktail);
             $entityManager->flush();

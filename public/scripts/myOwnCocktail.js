@@ -54,11 +54,10 @@ document.getElementById('confirm-ingredient').addEventListener("click",()=>{
     INGREDIENT_STORE_BTN.style.display = 'none'
     INGREDIENT_FIELD_LIST.lastElementChild.style.display = 'none'
 
-    let list = INGREDIENT_FIELD_LIST;
-    let counter = list.getElementsByTagName("li").length-1
+    let counter = INGREDIENT_FIELD_LIST.getElementsByTagName("li").length-1
     let measure = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_measurement`).value
     let metric = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_metric`).value
     let ingredient = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_ingredient`).value
 
-    list.innerHTML += `<li>${measure} ${metric} ${ingredient}</li>`
+    INGREDIENT_OVERVIEW_LIST.innerHTML += `<li>${measure} ${metric} ${ingredient}</li>`
 })

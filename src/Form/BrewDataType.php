@@ -26,7 +26,7 @@ class BrewDataType extends \Symfony\Component\Form\AbstractType
                     'cl' => 'cl',
                     'part' => 'part',
                     'oz' => 'oz',],
-                'attr'=>['class'=>'d-block'],
+                'attr'=>['class'=>'d-block','placeholder'=>'ml'],
             ])
             ->add('ingredient', TextType::class, [
                 'label' => 'ingredient',

@@ -5,49 +5,27 @@
 {% block body %}
     <h1>Cocktail index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Category</th>
-                <th>Glass</th>
-                <th>IngredientsAndMeasurements</th>
-                <th>Instructions</th>
-                <th>IsAlcoholic</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
+
         {% for cocktail in cocktails %}
-            <tr>
-                <td>{{ cocktail.id }}</td>
-                <td>{{ cocktail.name }}</td>
-                <td><a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}" width="60" height="60"></a></td>
-                <td>{{ cocktail.category }}</td>
-                <td>{{ cocktail.glass }}</td>
-                <td>
-                    <ul>
-                        {% for items in cocktail.ingredientsAndMeasurements %}
-                        <li>{{ items|join(', ') }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-                <td>{{ cocktail.instructions }}</td>
-                <td>{{ cocktail.isAlcoholic ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}">show</a>
-{#                    <a href="{{ path('cocktail_edit', {'id': cocktail.id}) }}">edit</a>#}
-                </td>
-            </tr>
+<div class="card m-5 " style="width: 20rem;"  id="cocktail-cards" >
+    <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}" width="100%" class="p-2">
+    <div class="card-body">
+        <h5 class="card-title">{{ cocktail.name }}</h5>
+        <p class="card-text">{{ cocktail.isAlcoholic ? 'Yes' : 'No' }}</p>
+    </div>
+</div>
+
+
+
+
         {% else %}
             <tr>
                 <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+
+
 
     <a href="{{ path('cocktail_new') }}">Create new</a>
 {% endblock %}

@@ -63,7 +63,7 @@ class Ingredient
         return $this->name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -73,7 +73,7 @@ class Ingredient
         return $this->isAlcoholic;
     }
 
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

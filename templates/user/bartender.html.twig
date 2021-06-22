@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bartender index{% endblock %}
+
+{% block body %}
+    <div class="col-3 m-5 pb-5">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for bartender in bartenders %}
+            <tr>
+                <td>{{ bartender.username }}</td>
+                <td> {{ bartender.email }}</td>
+                <td> {{ bartender.phone}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

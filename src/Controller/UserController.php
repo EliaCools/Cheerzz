@@ -42,6 +42,17 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/bartender', name: 'bartender' , methods: ['GET'])]
+    public function bartender(UserRepository $userRepository): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_BARTENDER");
+        $bartender = $userRepository->findByRole("ROLE_BARTENDER");
+        return $this->render('user/bartender.html.twig', [
+            'controller_name' => 'UserController',
+            'bartenders'=> $bartender,
+        ]);
+    }
+
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -67,7 +78,6 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
     #[Route('/{id}', name: 'user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user): Response
     {

@@ -62,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=ShoppingCart::class, mappedBy="customer", orphanRemoval=true)
      */
-    private $shoppingCarts;
+    private $shoppingCarts ;
 
     /**
      * @ORM\OneToMany(targetEntity=Order::class, mappedBy="customer", orphanRemoval=true)
@@ -215,7 +215,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getSingleShoppingCart() : ShoppingCart
     {
-        if(!empty($this->shoppingCarts)){
+        if(isset($this->shoppingCarts[0])){
             return $this->shoppingCarts[0];
         }
 

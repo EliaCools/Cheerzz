@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\BrewDataType;
@@ -15,28 +16,28 @@ use App\Form\BrewDataType;
 class HomeBrewType extends AbstractType
 {
 
-    /**
-     * @throws \JsonException
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
         $builder
-            ->add('name')
-            ->add('glass', ChoiceType::class, [
-                'choices' => $options['glass_options']
+            ->add('name', TextType::class,[
+                'attr'=>['class'=>'d-block','placeholder'=>'name your cocktail'],
+                'label'=>'Cocktail name',
             ])
-            ->add('instructions', TextareaType::class)
+            ->add('glass', ChoiceType::class, [
+                'choices' => $options['glass_options'],
+                'attr'=>['class'=>'d-block'],
+            ])
+            ->add('instructions', TextareaType::class,[
+                'attr'=>['class'=>'d-block','placeholder'=>'describe how to mix your cocktail']
+            ])
             ->add('ingredientsAndMeasurements', CollectionType::class, [
                     'allow_add' => true,
                     'allow_delete' => true,
                     'entry_type' => BrewDataType::class,
-                    'entry_options' => [
-                        'label' => 'add to mix'
-                    ],
-                    'label' => 'Add ingredient',
                     'prototype'=>true,
-
+                    'label'=>false,
+                    'attr'=>['class'=>'d-block'],
                 ]
             );
     }

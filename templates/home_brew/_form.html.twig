@@ -3,17 +3,14 @@
     {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
 
     <div class="formgroup text-center">
-        {{ form_label(form.name) }}
+        {{ form_label(form.name,'Cocktail name', {'label_attr': {'class': ''}}) }}
         {{ form_widget(form.name,{'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
     </div>
 
     <div class="formgroup text-center">
-        {{ form_label(form.glass) }}
+        {{ form_label(form.glass,'Served in', {'label_attr': {'class': ''}}) }}
         {{ form_widget(form.glass, {'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
     </div>
-
-
-    <ul id="ingredients"></ul>
 
     <ul class="display-block" id="ingredientsAndMeasurements-fields-list"
         data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"

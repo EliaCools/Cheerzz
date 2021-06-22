@@ -29,8 +29,8 @@ async function showIngredientSuggestion (domElement){
 
 document.getElementById('add-another-ingredient').addEventListener('click',()=>{
 
-    INGREDIENT_BTN.style.display = 'none'
-    INGREDIENT_STORE_BTN.style.display = 'block'
+    INGREDIENT_BTN.classList.remove('d-none');
+    INGREDIENT_STORE_BTN.classList.add('d-none');
 
     let list = INGREDIENT_FIELD_LIST;
     let counter = list.getElementsByTagName("li").length
@@ -51,13 +51,7 @@ document.getElementById('add-another-ingredient').addEventListener('click',()=>{
 
 document.getElementById('confirm-ingredient').addEventListener("click",()=>{
 
-    INGREDIENT_BTN.style.display = 'block'
-    INGREDIENT_STORE_BTN.style.display = 'none'
+    INGREDIENT_BTN.classList.add('d-none');
+    INGREDIENT_STORE_BTN.classList.remove('d-none');
 
-    let counter = INGREDIENT_FIELD_LIST.getElementsByTagName("li").length-1
-    let measure = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_measurement`).value
-    let metric = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_metric`).value
-    let ingredient = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_ingredient`).value
-
-    INGREDIENT_OVERVIEW_LIST.innerHTML += `<li>${measure} ${metric} ${ingredient}</li>`
 })

@@ -827,6 +827,10 @@ th:last-child {
   text-align: right;
 }
 
+.cart-counter {
+  background: #222;
+}
+
 @media (max-width: 880px) {
   .footer-distributed .footer-left,
 .footer-distributed .footer-center,

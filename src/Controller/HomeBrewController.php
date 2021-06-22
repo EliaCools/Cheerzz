@@ -68,6 +68,7 @@ class HomeBrewController extends AbstractController
     #[Route('/{id}/edit', name: 'home_brew_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, HomeBrew $homeBrew): Response
     {
+        $homeBrew->formatIngredientsToForm();
         $form = $this->createForm(HomeBrewType::class, $homeBrew);
         $form->handleRequest($request);
 

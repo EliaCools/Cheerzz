@@ -45,9 +45,12 @@ class JsonToObject
         $cocktails = [];
         $decoded = json_decode($jsonMultiple, true, 512, JSON_THROW_ON_ERROR);
 
-        foreach($decoded[self::DRINKS] as $item)
+        if(isset($decoded[self::DRINKS]))
         {
-            $cocktails[]= $this->convertArrayToCocktail($item);
+            foreach ($decoded[self::DRINKS] as $item)
+            {
+                $cocktails[] = $this->convertArrayToCocktail($item);
+            }
         }
         return $cocktails;
     }

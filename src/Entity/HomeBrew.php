@@ -151,4 +151,17 @@ class HomeBrew
         //update ingredientsAndMeasurements
         $this->ingredientsAndMeasurements = $rawArray ;
     }
+
+    public function formatIngredientsToForm():void
+    {
+        $rawArray = $this->getIngredientsAndMeasurements();
+        foreach ($rawArray as &$subArray)
+        {
+            $reArranged = $subArray[1]." ".$subArray[0];
+            $exploded = explode( " ", $reArranged);
+            $subArray = $exploded;
+        }
+        unset($subArray);
+        $this->ingredientsAndMeasurements = $rawArray;
+    }
 }

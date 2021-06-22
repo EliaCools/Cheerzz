@@ -79,4 +79,13 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user_index');
     }
+    #[Route('/{id}/bartender', name: 'bartender')]
+    public function bartender(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_BARTENDER");
+        $bartender = $this->getDoctrine()->
+        return $this->render('user/bartender.html.twig', [
+            'controller_name' => 'UserController',
+        ]);
+    }
 }

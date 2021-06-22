@@ -49,7 +49,7 @@ class UserFixtures extends Fixture
 
         $bar1 = new User();
         $bar1->setRoles(['ROLE_BARTENDER']);
-        $bar1->setEmail('user3@cocktail.com');
+        $bar1->setEmail('bar1@cocktail.com');
         $bar1->setUsername('Bobo');
         $bar1->setPassword($this->passwordHasher->hashPassword($bar1, 'password'));
         $bar1->setPhone('7777777777');

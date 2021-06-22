@@ -1,48 +1,47 @@
-<div class="col-8 mx-auto text-center homebrewSection">
+<div class="col-8 mx-auto text-center homebrewSection pb-5 mb-5">
 
     {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
 
     <div class="formgroup text-center">
-        {{ form_label(form.name,'Cocktail name', {'label_attr': {'class': ''}}) }}
+        {{ form_label(form.name,'Cocktail name', {'label_attr': {'class': 'd-block'}}) }}
         {{ form_widget(form.name,{'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
     </div>
 
     <div class="formgroup text-center">
-        {{ form_label(form.glass,'Served in', {'label_attr': {'class': ''}}) }}
+        {{ form_label(form.glass,'Served in', {'label_attr': {'class': 'd-block'}}) }}
         {{ form_widget(form.glass, {'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
     </div>
 
-
-    <ul id="ingredients" style="list-style: none"></ul>
-
-    <ul class=""  style="list-style: none" id="ingredientsAndMeasurements-fields-list"
-        data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"
-        data-widget-tags="{{ 'li'|e }}"
-        data-widget-counter="{{ form.ingredientsAndMeasurements|length }}">
-        {% for ingredientsAndMeasurementsField in form.ingredientsAndMeasurements %}
-            <div class="text-center">
-                <li style="list-style: none">
+    <div class="formgroup text-center pt-3">
+        <ul class="text-center" style="list-style: none" id="ingredientsAndMeasurements-fields-list"
+            data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"
+            data-widget-tags="{{ 'li'|e }}"
+            data-widget-counter="{{ form.ingredientsAndMeasurements|length }}">
+            {% for ingredientsAndMeasurementsField in form.ingredientsAndMeasurements %}
+                <li>
                     {{ form_errors(ingredientsAndMeasurementsField) }}
                     {{ form_widget(ingredientsAndMeasurementsField) }}
                 </li>
-            </div>
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
+    </div>
 
     <datalist id="ingredient_suggestion">
         <option id="ingredient_suggestion_option" value=""></option>
     </datalist>
 
-    <button type="button" id="add-another-ingredient" data-list-selector="#ingredientsAndMeasurements-fields-list">
-        Add to your cocktail
+    <button type="button" id="add-another-ingredient" class="btn btn-info mb-3 col-2"
+            data-list-selector="#ingredientsAndMeasurements-fields-list">
+        Add Ingredient
     </button>
-    <button type="button" class="text-center" id="confirm-ingredient" style="display: none">Confirm ingredient</button>
-    <div class="text-center">
-        {{ form_row(form.instructions,{'attr':{'class':'text-center p-8'}}) }}
-        <button type="submit" class="btn-success text-center p-8">{{ button_label|default('Save') }}</button>
+
+    <div class="formgroup text-center mb-5">
+        {{ form_label(form.name,'Instructions', {'label_attr': {'class': 'd-block'}}) }}
+        {{ form_widget(form.instructions,{'attr':{'class':'text-center col-8','row':'10'}}) }}
 
     </div>
 
+    <button type="submit" class="btn btn-info mb-3 col-2 text-center p-8">{{ button_label|default('Save') }}</button>
 
     {{ form_end(form) }}
 

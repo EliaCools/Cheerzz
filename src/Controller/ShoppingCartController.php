@@ -27,18 +27,18 @@ class ShoppingCartController extends AbstractController
         $user = $this->getUser();
         $products = $productRepository->findAll();
 
-        $shoppingCard = new ShoppingCart($user);
+        $shoppingCart = new ShoppingCart($user);
 
         if($user->getSingleShoppingCart()){
-            $shoppingCard = $user->getSingleShoppingCart();
+            $shoppingCart = $user->getSingleShoppingCart();
         }
 
 
         return $this->render('shopping_card/index.html.twig', [
             'controller_name' => 'ShoppingCardController',
-            'shopping_lines' => $shoppingCard->getShoppingLines(),
+            'shopping_lines' => $shoppingCart->getShoppingLines(),
             'product' => $products,
-            'shoppincart' => $shoppingCard
+            'shoppingCart' => $shoppingCart
 
         ]);
     }

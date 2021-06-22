@@ -34,15 +34,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('my_shopping_cart') }}"><img class="cart" src="{{ asset('images/cart.svg') }}" alt="cart-logo"></a>
 
+                    {% if shoppingCart is defined  %}
+                        {% if shoppingCart  is not null %}
+                            {{ shoppingCart.getTotalProducts() }}
+                        {% endif %}
+                    {% endif %}
                 </li>
             </ul>
             </ul>
-            <div class="cart-counter">
-                {% if shoppinCart is defined  %}
-                    {% if shoppingCart  is not null %}
-                        {{ shoppingCart.getTotalProducts() }}</div>
-                    {% endif %}
-                {% endif %}
+
+
         </div>
     </div>
 </nav>

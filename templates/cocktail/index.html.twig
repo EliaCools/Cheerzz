@@ -3,7 +3,7 @@
 {% block title %}Cocktail index{% endblock %}
 
 {% block body %}
-    <h1>Cocktail index</h1>
+    <h1>Cocktails</h1>
     <div class="container-fluid ">
         <div class=" row flex-row flex-wrap">
             {% for letter in alphabet %}
@@ -15,7 +15,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+{#            <th>Id</th>#}
             <th>Name</th>
             <th>Image</th>
             <th>Category</th>
@@ -29,7 +29,7 @@
         <tbody>
         {% for cocktail in cocktails %}
             <tr>
-                <td>{{ cocktail.id }}</td>
+{#                <td>{{ cocktail.id }}</td>#}
                 <td>{{ cocktail.name }}</td>
                 <td><a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}"
                                                                                     width="60" height="60"></a></td>

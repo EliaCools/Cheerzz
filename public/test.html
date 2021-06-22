@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../public/main.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -85,40 +85,54 @@
     </div>
 </section>
 
-<div class="mt-5 pt-5 footer">
-    <div class="street parallax" id="parallax"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-xs-12">
-                <a href="#"><img class="footer-logo mt-2" src="images/brandname.svg" alt="brandName"></a>
-                <p class="tagline pt-3 pr-5">Good drinks, good life</p>
-                <div class="col-lg-3 col-xs-12 footer-links">
-                    <a class="f-link" href="#">our drinks</a>
-                    <a class="f-link" href="#">about</a>
-                    <a class="f-link" href="#">contact us</a>
-                </div>
-            </div>
-            <div class="container pt-4">
-                <div class="social-links footer-links">
-                    <h4 class="follow mt-lg-0 mt-sm-3">Follow us on social media!</h4>
-                    <a href="#" target="_blank" rel="noopener" class="socials nav-link">
-                        <img class="social-icons" src="images/facebook.svg" alt="facebook"></a>
-                    <a href="#" target="_blank" rel="noopener" class="socials nav-link">
-                        <img class="social-icons" src="images/instagram.svg" alt="instagram"></a>
-                    <a href="#" target="_blank" rel="noopener" class="socials nav-link">
-                        <img class="youtube social-icons" src="images/youtube.svg" alt="youtube"></a>
-                </div>
-            </div>
+<footer class="footer-distributed">
+    <div class="parallax-container">
+        <div class="street"></div>
+    </div>
+
+    <div class="footer-left">
+        <img class="footer-logo" src="images/brandname.svg" alt="brandName">
+        <h3>Cocktails<span>freshly served at your home!</span></h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            |
+            <a href="{{ path('contact') }}">About us</a>
+            |
+            <a href="#">Contact</a>
+        </p>
+
+        <p class="footer-company-name">© 2021 cheerzz</p>
+    </div>
+
+    <div class="footer-center">
+        <div>
+            <p><span>Justitiestraat, 2018 Antwerpen</span></p>
         </div>
 
-        <div class="ml-auto col-xs-12 col-sm-6 col-md-4">
-            <img class="bike" src="images/bike.gif" alt="bike"></div>
-        <div class="copyright text-center p-1">
-            © 2021 Copyright:
-            <a class="copyright" href="#">Cheerzz</a>
+        <div>
+            <p>+32 485 52 20 45</p>
+        </div>
+        <div>
+            <p><a href="mailto:info@cheerzz.com">info@cheerzz.com</a></p>
         </div>
     </div>
-</div>
+
+    <div class="footer-right">
+        <img class="footer-bike" src="images/bike-test.gif" alt="bike">
+        <p class="footer-company-about">
+            <span>About cheerzz</span>
+            Making summers greater than ever with our homemade cocktails at your door, for you to enjoy or made live by one of our bartenders</p>
+        <div class="social-links footer-links">
+            <a href="#" target="_blank" rel="noopener" class="socials nav-link">
+                <img class="social-icons" src="images/facebook.svg" alt="facebook"></a>
+            <a href="#" target="_blank" rel="noopener" class="socials nav-link">
+                <img class="social-icons" src="images/instagram.svg" alt="instagram"></a>
+            <a href="#" target="_blank" rel="noopener" class="socials nav-link">
+                <img class="youtube social-icons" src="images/youtube.svg" alt="youtube"></a>
+        </div>
+    </div>
+</footer>
 
 
 

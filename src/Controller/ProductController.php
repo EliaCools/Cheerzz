@@ -65,8 +65,17 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
     public function show(Product $product): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
         return $this->render('product/product_details.html.twig', [
             'product' => $product,
+            'shoppingCart' => $shoppingCart
         ]);
     }
 

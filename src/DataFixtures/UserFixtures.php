@@ -54,17 +54,17 @@ class UserFixtures extends Fixture
         $bar1->setPassword($this->passwordHasher->hashPassword($bar1, 'password'));
         $bar1->setPhone('7777777777');
         $bar1->setDateOfBirth(new \DateTime('1970-01-01'));
-        $manager->persist($user1);
+        $manager->persist($bar1);
         $manager->flush();
 
         $bar2 = new User();
         $bar2->setRoles(['ROLE_BARTENDER']);
-        $bar2->setEmail('user4@cocktail.com');
+        $bar2->setEmail('bar2@cocktail.com');
         $bar2->setUsername('Bob Marley');
         $bar2->setPassword($this->passwordHasher->hashPassword($bar2, 'password'));
         $bar2->setPhone('1111111111');
         $bar2->setDateOfBirth(new \DateTime('1996-01-01'));
-        $manager->persist($user1);
+        $manager->persist($bar2);
         $manager->flush();
 
 

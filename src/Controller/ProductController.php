@@ -33,7 +33,7 @@ class ProductController extends AbstractController
 
 
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $productRepository->findWithoutServices(),
             'shoppingCart' => $shoppingCart,
 
         ]);

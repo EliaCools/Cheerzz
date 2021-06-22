@@ -155,13 +155,20 @@ class HomeBrew
     public function formatIngredientsToForm():void
     {
         $rawArray = $this->getIngredientsAndMeasurements();
+
         foreach ($rawArray as &$subArray)
         {
+           if($subArray[0] === null)
+           {
+               $subArray[0] = "  ";
+           }
+
             $reArranged = $subArray[1]." ".$subArray[0];
             $exploded = explode( " ", $reArranged);
             $subArray = $exploded;
         }
         unset($subArray);
         $this->ingredientsAndMeasurements = $rawArray;
+//        var_dump($this->ingredientsAndMeasurements);
     }
 }

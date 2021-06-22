@@ -21,15 +21,14 @@ class HomeBrewType extends AbstractType
 
         $builder
             ->add('name', TextType::class,[
-                'attr'=>['class'=>'d-block','placeholder'=>'name your cocktail'],
+                'attr'=>['placeholder'=>'name your cocktail'],
                 'label'=>'Cocktail name',
             ])
             ->add('glass', ChoiceType::class, [
                 'choices' => $options['glass_options'],
-                'attr'=>['class'=>'d-block'],
             ])
             ->add('instructions', TextareaType::class,[
-                'attr'=>['class'=>'d-block','placeholder'=>'describe how to mix your cocktail']
+                'attr'=>['placeholder'=>'describe how to mix your cocktail']
             ])
             ->add('ingredientsAndMeasurements', CollectionType::class, [
                     'allow_add' => true,
@@ -37,7 +36,7 @@ class HomeBrewType extends AbstractType
                     'entry_type' => BrewDataType::class,
                     'prototype'=>true,
                     'label'=>false,
-                    'attr'=>['class'=>'d-block'],
+
                 ]
             );
     }

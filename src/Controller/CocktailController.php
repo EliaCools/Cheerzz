@@ -78,6 +78,7 @@ class CocktailController extends AbstractController
                 ];
             }
         }
+
         $shoppingCart = null;
 
         /** @var User $user */

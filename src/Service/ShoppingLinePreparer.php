@@ -39,6 +39,25 @@ class ShoppingLinePreparer
     }
 
 
+    public function prepareBartenderShoppingLine(int $productId, ?int $shoppingCartId, int  $quantity): ShoppingLine
+    {
+
+        $shoppingLine = new ShoppingLine();
+
+        if ($this->shoppingLineRepository->findOneBy(['product' => $productId, 'shoppingCart' => $shoppingCartId])) {
+
+            $shoppingLine = $this->shoppingLineRepository->findOneBy(['product' => $productId, 'shoppingCart' => $shoppingCartId]);
+
+        }
+
+
+        $shoppingLine->setQuantity($quantity);
+        $shoppingLine->setProduct($this->productRepository->findOneBy(['id' => $productId]));
+
+        return $shoppingLine;
+    }
+
+
 
 
 

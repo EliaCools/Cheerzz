@@ -1,6 +1,10 @@
 const API_INGREDIENT = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i=';
 const INPUT = document.getElementById('find_Ingredient');
 
+
+
+
+
 async function fetchIngredient(input) {
 
     let json = await fetch(API_INGREDIENT + input.toString());

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+
+    <div class="product-container">
+
+        <div class="small-container single-product">
+            <div class="row">
+                <div class="col-4">
+                    <img class="detail-img" src="{{ product.fetchIngredientImageURLMedium(product.name)}}" alt="cocktail">
+                </div>
+                <div class="col-4">
+                    <h1 class="text-center mx-auto">{{ product.name }}</h1>
+                    <h4 class="text-center mx-auto">{{ product.price }}</h4>
+                    <form method="post" action="{{ path('shopping_line_new') }}">
+                        <input type="text" value='{{ product.id }}' name="product" hidden>
+                        <input type="number" name="quantity">
+                        <input type="text" name="isEdit" value="" hidden>
+                        <input class="btn" type="submit" value="add to basket">
+                    </form>
+                    <h3>Product Details</h3>
+                    <p>Here will be some detailed info about the product</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h1>Product</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ product.quantity }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('product_index') }}">back to list</a>
+
+    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+
+    {{ include('product/_delete_form.html.twig') }}
+{% endblock %}

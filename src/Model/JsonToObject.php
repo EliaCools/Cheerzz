@@ -19,7 +19,7 @@ class JsonToObject
     private const STR_INGREDIENT = 'strIngredient';
     private const STR_AMOUNT = 'strMeasure';
     private const STR_ALCOHOLIC = 'strAlcoholic';
-    private const STR_IMAGE = 'strThumb';
+    private const STR_IMAGE = 'strDrinkThumb';
     private const STR_GLASS = 'strGlass';
     private const STR_CATEGORY = 'strCategory';
     private const STR_INSTRUCTIONS = 'strInstructions';
@@ -81,9 +81,12 @@ class JsonToObject
         //TODO: maybe convert this into an array of objects? might be cleaner.
         for ($i = 1; $i <= 15; $i++)
         {
-            $ingredients[] = [$decodedJson[self::STR_INGREDIENT] . $i, $decodedJson[self::STR_AMOUNT] . $i];
+            if (empty($decodedJson[self::STR_INGREDIENT . $i]))
+            {
+                break;
+            }
+            $ingredients[] = [$decodedJson[self::STR_INGREDIENT . $i], $decodedJson[self::STR_AMOUNT . $i]];
         }
-
         return new Cocktail(
             $decodedJson[self::STR_ID],
             $decodedJson[self::STR_NAME],
@@ -100,7 +103,7 @@ class JsonToObject
     #region Ingredient Conversion
     /**
      * @param string $jsonSingle
-     * @return Ingredient
+     * @return Ingredient|null
      * @throws \JsonException
      */
     public function convertToIngredient(string $jsonSingle): ?Ingredient

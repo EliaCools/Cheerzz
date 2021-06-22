@@ -20,30 +20,25 @@ class ShoppingLinePreparer
 
     }
 
-    public function prepareShoppingLine(int $productId, ?int $shoppingCartId, int  $quantity, bool $isEdit): ShoppingLine
+    public function prepareShoppingLine(int $productId, ?int $shoppingCartId, int  $quantity): ShoppingLine
     {
 
-        if($this->shoppingLineRepository->findOneBy(['product'=> $productId, 'shoppingCart'=> $shoppingCartId])){
-            $shoppingLine = $this->shoppingLineRepository->findOneBy(['product'=> $productId, 'shoppingCart'=> $shoppingCartId]);
+        $shoppingLine = new ShoppingLine();
+        $shoppingLine->setQuantity($quantity);
+
+        if ($this->shoppingLineRepository->findOneBy(['product' => $productId, 'shoppingCart' => $shoppingCartId])) {
+            $shoppingLine = $this->shoppingLineRepository->findOneBy(['product' => $productId, 'shoppingCart' => $shoppingCartId]);
             $current = $shoppingLine->getQuantity();
             $current += $quantity;
             $shoppingLine->setQuantity($current);
 
-            if($isEdit === true){
-                $shoppingLine->setQuantity($quantity);
-            }
-
-        }else{
-
-            $shoppingLine = new ShoppingLine();
-            $shoppingLine->setQuantity($quantity);
-
         }
 
-        $shoppingLine->setProduct($this->productRepository->findOneBy(['id'=> $productId]));
-
+        $shoppingLine->setProduct($this->productRepository->findOneBy(['id' => $productId]));
         return $shoppingLine;
     }
+
+
 
 
 

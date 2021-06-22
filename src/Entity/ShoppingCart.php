@@ -100,4 +100,27 @@ class ShoppingCart
 
         return $this;
     }
+
+    public function totalPrice() :int
+    {
+        $price = 0;
+        foreach ($this->shoppingLines as $shoppingLine){
+
+           $price += $shoppingLine->getProduct()->getPrice() * $shoppingLine->getquantity();
+
+        }
+        return $price;
+    }
+
+    public function getTotalProducts() :int
+    {
+        $products= 0;
+        foreach ($this->shoppingLines as $shoppingLine){
+
+            $products += $shoppingLine->getQuantity();
+
+        }
+        return $products;
+
+    }
 }

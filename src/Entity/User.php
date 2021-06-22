@@ -213,13 +213,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->shoppingCarts;
     }
 
-    public function getSingleShoppingCart() : ?ShoppingCart
+    public function getSingleShoppingCart() : ShoppingCart
     {
         if(!empty($this->shoppingCarts)){
             return $this->shoppingCarts[0];
         }
 
-        return null;
+        return new ShoppingCart($this);
     }
 
     public function addShoppingCart(ShoppingCart $shoppingCart): self

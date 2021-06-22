@@ -50,10 +50,10 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'product_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
     public function show(Product $product): Response
     {
-        return $this->render('product/show.html.twig', [
+        return $this->render('product/product_details.html.twig', [
             'product' => $product,
         ]);
     }
@@ -88,32 +88,6 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('product_index');
     }
 
-    /**
-     * @param string $ingredientName
-     * @return string
-     */
-    public function fetchIngredientImageURLSmall(string $ingredientName): string
-    {
-        return "www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Small.png";
-    }
-
-    /**
-     * @param string $ingredientName
-     * @return string
-     */
-    public function fetchIngredientImageURLMedium(string $ingredientName): string
-    {
-        return "www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Medium.png";
-    }
-
-    /**
-     * @param string $ingredientName
-     * @return string
-     */
-    public function fetchIngredientImageURLLarge(string $ingredientName): string
-    {
-        return "www.thecocktaildb.com/images/ingredients/" . $ingredientName . ".png";
-    }
 
 
 

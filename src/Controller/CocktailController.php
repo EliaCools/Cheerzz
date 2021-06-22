@@ -6,6 +6,7 @@ use App\Entity\Cocktail;
 use App\Form\CocktailType;
 use App\Model\CocktailApiClient;
 use App\Repository\CocktailRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,10 +49,26 @@ class CocktailController extends AbstractController
     }
 
     #[Route('/{id}/show', name: 'cocktail_show', methods: ['GET'])]
-    public function show(int $id, CocktailApiClient $client): Response
+    public function show(int $id, CocktailApiClient $client, ProductRepository $productRepository): Response
     {
+        $cocktail = $client->fetchCocktailById($id);
+        $products = [];
+        if (isset($cocktail))
+        {
+            foreach ($cocktail->getIngredientsAndMeasurements() as $ingredient)
+            {
+                $name = $ingredient[0];
+                $measurement = $ingredient[1];
+                $products[] = [
+                    'name' => $name,
+                    'measurement' => $measurement,
+                    'id' => $productRepository->findByProductName($name)->getId(),
+                ];
+            }
+        }
         return $this->render('cocktail/show.html.twig', [
-            'cocktail' => $client->fetchCocktailById($id),
+            'cocktail' => $cocktail,
+            'products' => $products,
         ]);
     }
 

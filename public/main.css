@@ -13,6 +13,10 @@ body, html {
 }
 
 /* NAVIGATION BAR STYLING */
+.dropdown-menu {
+  background-color: #7adacc;
+}
+
 .bg-light {
   background-color: #7adacc !important;
 }

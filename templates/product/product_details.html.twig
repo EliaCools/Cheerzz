@@ -21,7 +21,7 @@
                         <button class="btn add-to-cart" type="submit">add to cart</button>
                     </form>
                     <h3>Product Details</h3>
-                    <p class="detailed-description">Here will be some detailed info about the product</p>
+                    <p class="detailed-description">{{ cocktailApi.fetchIngredientByName(product.name).getDescription }}</p>
                 </div>
             </div>
         </div>

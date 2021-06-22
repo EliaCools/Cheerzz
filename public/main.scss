@@ -92,9 +92,9 @@ body, html {
 
 
 
-body {
-  background-color: #04BF9D !important;
-}
+//body {
+//  background-color: #04BF9D !important;
+//}
 
 .wrapper {
   margin: 10vh;
@@ -1077,9 +1077,6 @@ th:last-child{
   color: #fff;
 }
 
-  /* BARTENDER */
-
-
   /* Carousel base class */
   .carousel {
     margin-bottom: 4rem;
@@ -1127,6 +1124,10 @@ th:last-child{
     line-height: 1;
     letter-spacing: -.05rem;
   }
+  .offer-icons {
+    height: 50px;
+    width: 50px;
+  }
 
   @media (min-width: 40em) {
     /* Bump up size of carousel content */
@@ -1162,6 +1163,54 @@ th:last-child{
     margin-left: 0;
   }
 }
+
+/* ABOUT US PAGE STYLING */
+
+#about {
+  background-color: #f28705;
+}
+
+#about p {
+  color: ivory;
+  font-weight: bolder;
+}
+
+#services p {
+  color: ivory;
+  font-weight: bolder;
+}
+
+#about, #services, #portfolio h2 {
+  color: #bf3604;
+}
+
+#services {
+  background-color: #7adacc;
+}
+
+#services h4 {
+  color: #e0ac1c;
+}
+
+#portfolio h3 {
+  color: #e0ac1c;
+}
+
+#portfolio p {
+  font-weight: bolder;
+  color: #e0ac1c;
+}
+
+#portfolio h5 {
+  color: #bf3604;
+}
+
+#portfolio{
+  background-color: ivory;
+}
+
+
+/* ABOUT US PAGE DONE */
 
 @media only screen and (min-width: 601px) and (max-width: 900px) {
   .hero-img {

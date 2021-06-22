@@ -21,7 +21,7 @@ class HomeBrewType extends AbstractType
 
         $builder
             ->add('name', TextType::class,[
-                'attr'=>['class'=>'d-block','placeholder'=>'name your cocktail'],
+                'attr'=>['placeholder'=>'name your cocktail'],
                 'label'=>'Cocktail name',
             ])
             ->add('glass', ChoiceType::class, [

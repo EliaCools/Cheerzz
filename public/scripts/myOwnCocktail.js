@@ -53,7 +53,6 @@ document.getElementById('confirm-ingredient').addEventListener("click",()=>{
 
     INGREDIENT_BTN.style.display = 'block'
     INGREDIENT_STORE_BTN.style.display = 'none'
-    INGREDIENT_FIELD_LIST.lastElementChild.style.display = 'none'
 
     let counter = INGREDIENT_FIELD_LIST.getElementsByTagName("li").length-1
     let measure = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_measurement`).value

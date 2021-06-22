@@ -1,37 +1,48 @@
-{{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
+<div class="col-8 mx-auto">
+    <span class="col-12"></span>
+</div>
+
+    {{ form_start(form, { 'attr': {'autocomplete': 'off'} }) }}
+<div class="formgroup">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name,{'attr': {'class': 'form-control form-control'}}) }}
+</div>
 
 
-{{ form_row(form.name) }}
-{{ form_row(form.glass) }}
+    {{ form_label(form.glass) }}
+    {{ form_widget(form.glass) }}
 
 
-<ul id="ingredients"></ul>
+    <ul id="ingredients"></ul>
 
-<ul class="display-block" id="ingredientsAndMeasurements-fields-list"
-    data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"
-    data-widget-tags="{{ 'li'|e }}"
-    data-widget-counter="{{ form.ingredientsAndMeasurements|length }}">
-    {% for ingredientsAndMeasurementsField in form.ingredientsAndMeasurements %}
-        <li>
-            {{ form_errors(ingredientsAndMeasurementsField) }}
-            {{ form_widget(ingredientsAndMeasurementsField) }}
-        </li>
-    {% endfor %}
-</ul>
+    <ul class="display-block" id="ingredientsAndMeasurements-fields-list"
+        data-prototype="{{ form_widget(form.ingredientsAndMeasurements.vars.prototype)|e }}"
+        data-widget-tags="{{ 'li'|e }}"
+        data-widget-counter="{{ form.ingredientsAndMeasurements|length }}">
+        {% for ingredientsAndMeasurementsField in form.ingredientsAndMeasurements %}
+            <li>
+                {{ form_errors(ingredientsAndMeasurementsField) }}
+                {{ form_widget(ingredientsAndMeasurementsField) }}
+            </li>
+        {% endfor %}
+    </ul>
 
-<datalist id="ingredient_suggestion">
-    <option id="ingredient_suggestion_option" value=""></option>
-</datalist>
+    <datalist id="ingredient_suggestion">
+        <option id="ingredient_suggestion_option" value=""></option>
+    </datalist>
 
-<button type="button" id="add-another-ingredient" data-list-selector="#ingredientsAndMeasurements-fields-list">
-    Add to your cocktail
-</button>
-<button type="button" class="" id="confirm-ingredient" style="display: none">Confirm ingredient</button>
+    <button type="button" id="add-another-ingredient" data-list-selector="#ingredientsAndMeasurements-fields-list">
+        Add to your cocktail
+    </button>
 
-{{ form_row(form.instructions) }}
+    <button type="button" class="" id="confirm-ingredient" style="display: none">Confirm ingredient</button>
 
-<button type="submit" class="btn-success d-block">{{ button_label|default('Save') }}</button>
+    {{ form_row(form.instructions) }}
 
-{{ form_end(form) }}
+    <button type="submit" class="btn-success d-block">{{ button_label|default('Save') }}</button>
 
-<script src="{{ asset('scripts/myOwnCocktail.js') }}"></script>
+    {{ form_end(form) }}
+
+    <script src="{{ asset('scripts/myOwnCocktail.js') }}"></script>
+</div>
+

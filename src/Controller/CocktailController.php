@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cocktail;
+use App\Entity\User;
 use App\Form\CocktailType;
 use App\Model\CocktailApiClient;
 use App\Repository\CocktailRepository;
@@ -19,9 +20,20 @@ class CocktailController extends AbstractController
     #[Route('/{firstCharacter}', name: 'cocktail_index', methods: ['GET'])]
     public function index(CocktailApiClient $cocktailClient, string $firstCharacter): Response
     {
+        $shoppingCart = null;
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
         return $this->render('cocktail/index.html.twig', [
             'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter($firstCharacter),
             'alphabet' => self::ALPHABET,
+            'shoppingCart' => $shoppingCart
         ]);
     }
 
@@ -50,8 +62,19 @@ class CocktailController extends AbstractController
     #[Route('/{id}/show', name: 'cocktail_show', methods: ['GET'])]
     public function show(int $id, CocktailApiClient $client): Response
     {
+        $shoppingCart = null;
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
         return $this->render('cocktail/show.html.twig', [
             'cocktail' => $client->fetchCocktailById($id),
+            'shoppingCart' => $shoppingCart
         ]);
     }
 

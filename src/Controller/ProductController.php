@@ -66,6 +66,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
     public function show(Product $product, CocktailApiClient $cocktailApiClient): Response
     {
+        $shoppingCart = null;
         /** @var User $user */
         $user = $this->getUser();
 

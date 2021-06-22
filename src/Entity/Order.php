@@ -28,17 +28,20 @@ class Order
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="purshasedOrders")
      * @ORM\JoinColumn(nullable=false)
+     * @var User
      */
     private $customer;
 
     /**
-     * @ORM\OneToMany(targetEntity=OrderLine::class, mappedBy="purchaseOrder", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=OrderLine::class, mappedBy="purchaseOrder", orphanRemoval=true, cascade={"persist"})
      */
     private $orderLines;
 
-    public function __construct()
+    public function __construct(User $customer, \DateTimeInterface $datePurshased)
     {
         $this->orderLines = new ArrayCollection();
+        $this->customer = $customer;
+        $this->datePurshased = $datePurshased;
     }
 
     public function getId(): ?int
@@ -51,12 +54,6 @@ class Order
         return $this->datePurshased;
     }
 
-    public function setDatePurshased(?\DateTimeInterface $datePurshased): self
-    {
-        $this->datePurshased = $datePurshased;
-
-        return $this;
-    }
 
     public function getCustomer(): ?User
     {

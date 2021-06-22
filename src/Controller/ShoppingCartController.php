@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
+use App\Entity\OrderLine;
 use App\Entity\ShoppingCart;
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,30 +49,43 @@ class ShoppingCartController extends AbstractController
         ]);
     }
 
-    #[Route('add/bartender', name: 'add_bartender')]
-    public function addBartender(ProductRepository $productRepository): Response
+    #[Route('order', name: 'process_order', methods: ['POST'])]
+    public function order(): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         /** @var User $user */
         $user = $this->getUser();
-        $products = $productRepository->findAll();
 
-        $shoppingCart = new ShoppingCart($user);
 
-        if($user->getSingleShoppingCart()){
-            $shoppingCart = $user->getSingleShoppingCart();
+        $shoppingCart = $user->getSingleShoppingCart();
+
+        $order = new Order($user, new DateTime('now'));
+
+        foreach($shoppingCart->getShoppingLines() as $shoppingLine){
+
+            $order->addOrderLine(new OrderLine($shoppingLine->getProduct(),
+                                                $shoppingLine->getQuantity(),
+                                                $shoppingLine->calculatePrice($shoppingLine->getProduct())));
+
         }
 
 
-        return $this->render('shopping_card/index.html.twig', [
-            'controller_name' => 'ShoppingCardController',
-            'shopping_lines' => $shoppingCart->getShoppingLines(),
-            'product' => $products,
-            'shoppingCart' => $shoppingCart
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($shoppingCart);
+        $entityManager->persist($order);
+        $entityManager->flush();
 
-        ]);
+        $this->addFlash(
+            'order',
+            'Your order has been processed!'
+        );
+
+        return $this->redirectToRoute('home');
+
     }
+
+
 
 
 }

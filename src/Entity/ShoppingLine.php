@@ -74,4 +74,10 @@ class ShoppingLine
 
         return $this;
     }
+
+    public function calculatePrice(Product $product){
+
+        return $this->quantity * $product->getPrice();
+
+    }
 }

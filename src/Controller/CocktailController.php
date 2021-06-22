@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Cocktail;
 use App\Form\CocktailType;
+use App\Model\CocktailApiClient;
 use App\Repository\CocktailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/cocktail')]
 class CocktailController extends AbstractController
 {
-    #[Route('/', name: 'cocktail_index', methods: ['GET'])]
-    public function index(CocktailRepository $cocktailRepository): Response
+    #[Route('/{firstCharacter}', name: 'cocktail_index', methods: ['GET'])]
+    public function index(CocktailApiClient $cocktailClient, string $firstCharacter): Response
     {
         return $this->render('cocktail/index.html.twig', [
-            'cocktails' => $cocktailRepository->findAll(),
+        'cocktails' => $cocktailClient->fetchCocktailsByFirstLetter($firstCharacter),
         ]);
     }
 
@@ -42,11 +43,11 @@ class CocktailController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'cocktail_show', methods: ['GET'])]
-    public function show(Cocktail $cocktail): Response
+    #[Route('/{id}/show', name: 'cocktail_show', methods: ['GET'])]
+    public function show(int $id, CocktailApiClient $client): Response
     {
         return $this->render('cocktail/show.html.twig', [
-            'cocktail' => $cocktail,
+            'cocktail' => $client->fetchCocktailById($id),
         ]);
     }
 
@@ -68,7 +69,7 @@ class CocktailController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'cocktail_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'cocktail_delete', methods: ['POST'])]
     public function delete(Request $request, Cocktail $cocktail): Response
     {
         if ($this->isCsrfTokenValid('delete'.$cocktail->getId(), $request->request->get('_token'))) {

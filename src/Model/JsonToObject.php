@@ -19,7 +19,7 @@ class JsonToObject
     private const STR_INGREDIENT = 'strIngredient';
     private const STR_AMOUNT = 'strMeasure';
     private const STR_ALCOHOLIC = 'strAlcoholic';
-    private const STR_IMAGE = 'strThumb';
+    private const STR_IMAGE = 'strDrinkThumb';
     private const STR_GLASS = 'strGlass';
     private const STR_CATEGORY = 'strCategory';
     private const STR_INSTRUCTIONS = 'strInstructions';
@@ -57,11 +57,15 @@ class JsonToObject
      * @return Cocktail
      * @throws \JsonException
      */
-    public function convertToCocktail(string $jsonSingle): Cocktail
+    public function convertToCocktail(string $jsonSingle): ?Cocktail
     {
         $decoded = json_decode($jsonSingle, true, 512, JSON_THROW_ON_ERROR);
 
-        return $this->convertArrayToCocktail($decoded[self::DRINKS][0]);
+        if($decoded[self::DRINKS] === null)
+        {
+            return null;
+        }
+        return $this->convertArrayToCocktail($decoded[self::DRINKS]['0']);
     }
 
     /**
@@ -77,9 +81,12 @@ class JsonToObject
         //TODO: maybe convert this into an array of objects? might be cleaner.
         for ($i = 1; $i <= 15; $i++)
         {
-            $ingredients[] = [$decodedJson[self::STR_INGREDIENT] . $i, $decodedJson[self::STR_AMOUNT] . $i];
+            if (empty($decodedJson[self::STR_INGREDIENT . $i]))
+            {
+                break;
+            }
+            $ingredients[] = [$decodedJson[self::STR_INGREDIENT . $i], $decodedJson[self::STR_AMOUNT . $i]];
         }
-
         return new Cocktail(
             $decodedJson[self::STR_ID],
             $decodedJson[self::STR_NAME],
@@ -96,14 +103,18 @@ class JsonToObject
     #region Ingredient Conversion
     /**
      * @param string $jsonSingle
-     * @return Ingredient
+     * @return Ingredient|null
      * @throws \JsonException
      */
-    public function convertToIngredient(string $jsonSingle): Ingredient
+    public function convertToIngredient(string $jsonSingle): ?Ingredient
     {
         $decoded = json_decode($jsonSingle, true, 512, JSON_THROW_ON_ERROR);
 
-        return $this->convertArrayToIngredient($decoded[self::INGREDIENTS][0]);
+        if($decoded[self::INGREDIENTS] === null)
+        {
+            return null;
+        }
+        return $this->convertArrayToIngredient($decoded[self::INGREDIENTS]['0']);
     }
 
     /**
@@ -128,9 +139,9 @@ class JsonToObject
      * @param array $decodedJson
      * @return Ingredient
      */
-    #[Pure] private function convertArrayToIngredient(array $decodedJson) : Ingredient
+    #[Pure] private function convertArrayToIngredient(array $decodedJson) : ?Ingredient
     {
-        $isAlcoholic = strtolower($decodedJson[self::STR_ALCOHOLIC_INGREDIENT]) === 'yes';
+        $isAlcoholic = strtolower((string)$decodedJson[self::STR_ALCOHOLIC_INGREDIENT]) === 'yes';
 
         return new Ingredient(
             $decodedJson[self::STR_ID_INGREDIENT],

@@ -6,7 +6,9 @@ use App\Entity\Product;
 use App\Entity\ShoppingLine;
 use App\Form\ProductType;
 use App\Form\ShoppingLineType;
+use App\Model\CocktailApiClient;
 use App\Repository\ProductRepository;
+use http\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,10 +50,10 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'product_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
     public function show(Product $product): Response
     {
-        return $this->render('product/show.html.twig', [
+        return $this->render('product/product_details.html.twig', [
             'product' => $product,
         ]);
     }
@@ -85,4 +87,8 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('product_index');
     }
+
+
+
+
 }

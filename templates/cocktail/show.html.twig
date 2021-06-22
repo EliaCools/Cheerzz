@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ cocktail.image }}</td>
+                <td><img src="{{ cocktail.image }}" width="140" height="140"></td>
             </tr>
             <tr>
                 <th>Category</th>
@@ -28,8 +28,14 @@
                 <td>{{ cocktail.glass }}</td>
             </tr>
             <tr>
-                <th>IngredientsAndMeasurements</th>
-                <td>{{ cocktail.ingredientsAndMeasurements ? cocktail.ingredientsAndMeasurements|join(', ') : '' }}</td>
+                <th>Ingredients</th>
+                <td>
+                <ul>
+                    {% for items in cocktail.ingredientsAndMeasurements %}
+                        <li>{{ items|join(', ') }}</li>
+                    {% endfor %}
+                </ul>
+                </td>
             </tr>
             <tr>
                 <th>Instructions</th>
@@ -42,7 +48,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('cocktail_index') }}">back to list</a>
+    <a href="{{ path('cocktail_index', {'firstCharacter': 'a'}) }}">back to list</a>
 
     <a href="{{ path('cocktail_edit', {'id': cocktail.id}) }}">edit</a>
 

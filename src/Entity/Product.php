@@ -89,4 +89,33 @@ class Product
     }
 
 
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLSmall(string $ingredientName): string
+    {
+        return "https://www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Small.png";
+    }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLMedium(string $ingredientName): string
+    {
+        return "https://www.thecocktaildb.com/images/ingredients/" .$ingredientName . "-Medium.png";
+    }
+
+    /**
+     * @param string $ingredientName
+     * @return string
+     */
+    public function fetchIngredientImageURLLarge(string $ingredientName): string
+    {
+        return "https://www.thecocktaildb.com/images/ingredients/" . $ingredientName . ".png";
+    }
+
+
+
 }

@@ -69,7 +69,7 @@ class CocktailApiClient
      */
     public function fetchCocktailById(int $id): ?Cocktail
     {
-        $response = $this->fetchRequest("lookup.php?iid=$id");
+        $response = $this->fetchRequest("lookup.php?i=$id");
         return $this->converter->convertToCocktail($response->getContent());
     }
 
@@ -118,14 +118,9 @@ class CocktailApiClient
     public function fetchIngredientById(int $id): ?Ingredient
     {
         $response = $this->fetchRequest("lookup.php?iid=$id");
-
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
         $content = $response->toArray();
 
-        //TODO: implement ingredient data parser
-        return new Ingredient(0, "", "", false, "");
+        return $this->converter->convertToIngredient($response->getContent());
     }
 
     /**
@@ -140,14 +135,10 @@ class CocktailApiClient
     public function fetchIngredientByName(string $name): ?Ingredient
     {
         $response = $this->fetchRequest("search.php?i=$name");
-
-        //receive request and convert to JSON associative array
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
         $content = $response->toArray();
 
         //TODO: implement ingredient data parser
-        return new Ingredient(0, "", "", false, "");
+        return $this->converter->convertToIngredient($response->getContent());
     }
 
     //TODO: write more functions for cocktail ingredients
@@ -170,4 +161,7 @@ class CocktailApiClient
         );
     }
     //</editor-fold>
+
+
+
 }

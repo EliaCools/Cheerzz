@@ -685,23 +685,6 @@ body {
 /* Here is the code for Responsive Footer */
 /* You can remove below code if you don't want Footer to be responsive */
 
-
-@media (max-width: 880px) {
-
-  .footer-distributed .footer-left,
-  .footer-distributed .footer-center,
-  .footer-distributed .footer-right {
-    display: block;
-    width: 100%;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-
-  .footer-distributed .footer-center i {
-    margin-left: 0;
-  }
-}
-
 #contact {
   position: relative;
   left: 65%;
@@ -838,6 +821,164 @@ body {
   .c-heading h1 {
     font-size: 2.2rem;
     text-align: center;
+  }
+
+  .row {
+    text-align: center;
+  }
+
+  .col-2, .col-3, .col-4 {
+    flex-basis: 100%;
+  }
+
+  .cart-info p{
+    display: none;
+  }
+
+}
+
+.product-container {
+  padding: 80px 0 50px 0;
+  width: 100%;
+}
+
+.col-4 {
+  flex-basis: 25%;
+  padding: 10px;
+  min-width: 200px;
+  margin-bottom: 50px;
+}
+
+.col-4 img {
+  width: 100%;
+}
+
+.small-container {
+  max-width: 1080px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.products, .subtitle {
+  text-align: center;
+  margin: 0 auto 80px;
+  position: relative;
+  line-height: 60px;
+
+}
+
+.detail-img {
+  width: 400px;
+  height: 400px;
+}
+
+.single-product{
+  margin-top: 80px;
+}
+
+.single-product .col-4 img{
+  padding: 0;
+}
+
+.single-product .col-4{
+  padding: 20px;
+}
+
+.single-product h4{
+  margin: 20px 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.single-product input{
+  margin-right: 10px;
+  width: 50px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.cart-page{
+  margin: 80px auto;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-img {
+  height: 80px;
+  width: 80px;
+  margin-right: 10px;
+}
+
+.cart-info{
+display: flex;
+  flex-wrap: wrap;
+}
+
+th {
+  text-align: left;
+  padding: 5px;
+  color: ivory;
+  background-color: #ca4804;
+  font-weight: normal;
+}
+
+td{
+  padding: 10px 5px;
+}
+
+td input{
+  padding: 5px;
+  height: 30px;
+  width: 40px;
+}
+
+td a{
+  font-size: 12px;
+  color: #ca4804;
+}
+
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price table{
+  width: 100%;
+  max-width: 400px;
+  border-top: 3px solid #ca4804;
+}
+
+td:last-child{
+  text-align: right;
+}
+
+th:last-child{
+  text-align: right;
+}
+
+.cart-counter {
+
+  background: #222;
+}
+
+@media (max-width: 880px) {
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer-distributed .footer-center i {
+    margin-left: 0;
   }
 }
 

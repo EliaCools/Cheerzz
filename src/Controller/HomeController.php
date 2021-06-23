@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Model\CocktailApiClient;
 use App\Model\YoutubeApiClient;
 use App\Repository\ShoppingcartRepository;
 use App\Repository\ShoppinglineRepository;
@@ -14,7 +15,7 @@ class HomeController extends AbstractController
 {
 
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(CocktailApiClient $client): Response
     {
         $shoppingCart = null;
 
@@ -25,10 +26,16 @@ class HomeController extends AbstractController
             $shoppingCart = $user->getSingleShoppingCart();
         }
 
+        $cocktails = [];
+        for ($i =0; $i< 3; $i++)
+        {
+            $cocktails[] = $client->fetchRandomCocktail();
+        }
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'shoppingCart' => $shoppingCart
+            'shoppingCart' => $shoppingCart,
+            'cocktails'=>$cocktails,
         ]);
     }
     #[Route('/contact', name: 'contact')]

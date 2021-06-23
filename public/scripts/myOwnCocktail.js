@@ -1,9 +1,6 @@
 const API_INGREDIENT = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i=';
 
-const INGREDIENT_OVERVIEW_LIST = document.getElementById('ingredients');
 const INGREDIENT_FIELD_LIST = document.getElementById("ingredientsAndMeasurements-fields-list");
-const INGREDIENT_BTN = document.getElementById('add-another-ingredient');
-const INGREDIENT_STORE_BTN = document.getElementById('confirm-ingredient');
 const INGREDIENT_SUGGESTION = document.getElementById('ingredient_suggestion_option');
 
 async function fetchFromAPI(input) {
@@ -29,9 +26,6 @@ async function showIngredientSuggestion (domElement){
 
 document.getElementById('add-another-ingredient').addEventListener('click',()=>{
 
-    INGREDIENT_BTN.style.display = 'none'
-    INGREDIENT_STORE_BTN.style.display = 'inline-block'
-
     let list = INGREDIENT_FIELD_LIST;
     let counter = list.getElementsByTagName("li").length
     let newWidget = list.getAttribute('data-prototype')
@@ -40,6 +34,7 @@ document.getElementById('add-another-ingredient').addEventListener('click',()=>{
 
     let newElem = document.createElement(list.getAttribute('data-widget-tags'))
     newElem.innerHTML = newWidget
+    newElem.classList.add('pb-3')
     list.append(newElem)
 
     document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_ingredient`).addEventListener('keyup',showIngredientSuggestion)
@@ -49,15 +44,3 @@ document.getElementById('add-another-ingredient').addEventListener('click',()=>{
 
 });
 
-document.getElementById('confirm-ingredient').addEventListener("click",()=>{
-
-    INGREDIENT_BTN.style.display = 'inline-block'
-    INGREDIENT_STORE_BTN.style.display = 'none'
-
-    let counter = INGREDIENT_FIELD_LIST.getElementsByTagName("li").length-1
-    let measure = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_measurement`).value
-    let metric = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_metric`).value
-    let ingredient = document.getElementById(`home_brew_ingredientsAndMeasurements_${counter}_ingredient`).value
-
-    INGREDIENT_OVERVIEW_LIST.innerHTML += `<li>${measure} ${metric} ${ingredient}</li>`
-})

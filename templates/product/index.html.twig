@@ -5,7 +5,9 @@
 {% block body %}
     <div class="product-container">
         <h1 class="text-center">Welcome to our product page</h1>
-        <p class="text-center">where you can order our cocktail ingredients. <br>If you want to let your drinks be made by a bartender, you can choose this on the checkout page when you click on the cart icon.</p>
+        <p class="text-center">Where you can order our cocktail ingredients. <br>If you want to let your drinks be made by a bartender, you can choose this on the checkout page when you click on the cart icon.
+            <br/>
+            <br/>If you want your own cocktail kit, you can contact us on the <a href="{{ path('contact') }}">contact page</a></p>
         <div class="small-container">
             <h2 class="products">Our Products</h2>
 
@@ -15,10 +17,10 @@
                 <div class="col-4">
                     <a href="{{ path('product_detailed',{'id': product.id} ) }}">
                     <img src="{{ product.fetchIngredientImageURLMedium(product.name)}}" alt="cocktail">
-{#                        <span>Price:{{ product. }}</span>#}
+
                     </a>
                     <h4 class="text-center mx-auto">{{ product.name }}</h4>
-                    <p class="text-center mx-auto">€ {{ product.price }}</p>
+                    <h2 class="text-center mx-auto">€ {{ product.price }}</h2>
                 </div>
                 {% endfor %}
             </div>

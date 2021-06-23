@@ -6,6 +6,7 @@ use App\Entity\HomeBrew;
 use App\Entity\User;
 use App\Form\HomeBrewType;
 use App\Repository\HomeBrewRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,13 +19,27 @@ class HomeBrewController extends AbstractController
     /**
      * @param HomeBrewRepository $homeBrewRepository
      * @return Response
-     * @isGranted ("ROLE_ADMIN")
      */
     #[Route('/', name: 'home_brew_index', methods: ['GET'])]
     public function index(HomeBrewRepository $homeBrewRepository): Response
     {
+        $myCocktails = $homeBrewRepository->findBy(['madeBy'=> $this->getUser() ]);
+        foreach ($myCocktails as $cocktail)
+        {
+            $ingredients = [];
+            foreach ($cocktail->getIngredientsAndMeasurements() as $ingredientsAndMeasurement)
+            {
+                if(empty($ingredientsAndMeasurement[0]))
+                {
+                    break;
+                }
+                $ingredients[] = $ingredientsAndMeasurement;
+            }
+            $cocktail->setIngredientsAndMeasurements($ingredients);
+        }
+
         return $this->render('home_brew/index.html.twig', [
-            'home_brews' => $homeBrewRepository->findAll(),
+            'home_brews' => $myCocktails,
         ]);
     }
 
@@ -58,10 +73,26 @@ class HomeBrewController extends AbstractController
     }
 
     #[Route('/{id}', name: 'home_brew_show', methods: ['GET'])]
-    public function show(HomeBrew $homeBrew): Response
+    public function show(HomeBrew $homeBrew, ProductRepository $productRepository): Response
     {
+        $products = [];
+        if (isset($homeBrew))
+        {
+            foreach ($homeBrew->getIngredientsAndMeasurements() as $ingredient)
+            {
+                $name = $ingredient[0];
+                $measurement = $ingredient[1];
+                $products[] = [
+                    'name' => $name,
+                    'measurement' => $measurement,
+                    'id' => $productRepository->findByProductName($name)->getId(),
+                ];
+            }
+        }
+
         return $this->render('home_brew/show.html.twig', [
             'home_brew' => $homeBrew,
+            'products'=>$products,
         ]);
     }
 

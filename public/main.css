@@ -578,7 +578,8 @@ th:last-child {
 
 .detailed-description {
   font-weight: bold;
-  color: #e0ac1c;
+  color: #B0413E !important;
+  width: 80%;
 }
 
 .add-to-cart {
@@ -586,7 +587,10 @@ th:last-child {
   color: ivory;
   border-radius: 50%;
   padding: 5px;
-  width: 50%;
+}
+
+.add-to-cart:hover {
+  color: #7adacc;
 }
 
 .single-product {
@@ -1032,6 +1036,12 @@ tussen deze 2 comments hierboven  stoppen*/
 }
 
 /* FOOTER STYLING OVER */
+.login-form input {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
 /* MEDIA QUERIES */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */

@@ -122,13 +122,11 @@ class HomeBrew
     {
         $rawArray = $this->ingredientsAndMeasurements;
 
-        //check if correct format
         if(count($rawArray[0]) !== 3 )
         {
             return;
         }
 
-        //replace each sub-array with correct format
         foreach ($rawArray as &$measuredIngredient)
         {
             $formatted = [];
@@ -139,16 +137,6 @@ class HomeBrew
         }
         unset($measuredIngredient);
 
-        //bring ingredientMeasurement array up to correct length
-        while (count($rawArray) < 15)
-        {
-            $rawArray[] = [0=>null , 1=>null];
-        }
-        while (count($rawArray) > 15)
-        {
-            array_pop($rawArray);
-        }
-        //update ingredientsAndMeasurements
         $this->ingredientsAndMeasurements = $rawArray ;
     }
 
@@ -169,6 +157,5 @@ class HomeBrew
         }
         unset($subArray);
         $this->ingredientsAndMeasurements = $rawArray;
-//        var_dump($this->ingredientsAndMeasurements);
     }
 }

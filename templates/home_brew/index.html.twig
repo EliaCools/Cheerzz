@@ -3,41 +3,41 @@
 {% block title %}HomeBrew index{% endblock %}
 
 {% block body %}
-    <h1>HomeBrew index</h1>
+
+    <h1 class="text-center title-homeBrew">My own cocktails</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Glass</th>
-                <th>Instructions</th>
-                <th>Ingredients</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+
+            <th>Name</th>
+            <th>Glass</th>
+            <th>Ingredients And Measurements</th>
+            <th>Instructions</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for home_brew in home_brews %}
             <tr>
-                <td>{{ home_brew.id }}</td>
+
                 <td>{{ home_brew.name }}</td>
                 <td>{{ home_brew.glass }}</td>
+                <td>
+                    <ul>
+                        {% for items in home_brew.ingredientsAndMeasurements %}
+                            <li>{{ items|join(', ') }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
                 <td>{{ home_brew.instructions }}</td>
                 <td>
-                {% for ingredient in home_brew.ingredientsAndMeasurements %}
-                   {%  if  ingredient[0]%}
-                    {{ ingredient[0] }}
-                    {% endif %}
-                    {% endfor %}
-                </td>
-                <td>
                     <a href="{{ path('home_brew_show', {'id': home_brew.id}) }}">show</a>
-                    <a href="{{ path('home_brew_edit', {'id': home_brew.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

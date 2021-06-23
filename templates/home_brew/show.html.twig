@@ -25,7 +25,14 @@
             </tr>
             <tr>
                 <th>IngredientsAndMeasurements</th>
-                <td>{{ home_brew.ingredientsAndMeasurements ? home_brew.ingredientsAndMeasurements|join(', ') : '' }}</td>
+                <td>
+                    <ul>
+                        {% for items in products %}
+                            <li><a href="{{ path('product_detailed', {'id': items.id}) }}">{{ items.name ~ ', ' ~ items.measurement }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+
             </tr>
         </tbody>
     </table>

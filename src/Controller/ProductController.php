@@ -11,10 +11,12 @@ use App\Model\CocktailApiClient;
 use App\Model\YoutubeApiClient;
 use App\Repository\ProductRepository;
 use http\Client;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 #[Route('/product')]
 class ProductController extends AbstractController
@@ -40,6 +42,9 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     #[Route('/new', name: 'product_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -63,6 +68,9 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * @IsGranted("ROLE_USER")
+     */
     #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
     public function show(Product $product, CocktailApiClient $cocktailApiClient): Response
     {
@@ -86,6 +94,9 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     #[Route('/{id}/edit', name: 'product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product): Response
     {
@@ -104,6 +115,9 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     #[Route('/{id}', name: 'product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product): Response
     {
@@ -115,8 +129,5 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('product_index');
     }
-
-
-
 
 }

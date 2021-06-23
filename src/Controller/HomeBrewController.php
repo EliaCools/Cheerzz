@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Class HomeBrewController
+ * @package App\Controller
+ * @IsGranted("ROLE_USER")
+ */
 #[Route('/home/brew')]
 class HomeBrewController extends AbstractController
 {

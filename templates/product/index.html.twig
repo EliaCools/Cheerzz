@@ -15,10 +15,10 @@
                 <div class="col-4">
                     <a href="{{ path('product_detailed',{'id': product.id} ) }}">
                     <img src="{{ product.fetchIngredientImageURLMedium(product.name)}}" alt="cocktail">
-{#                        <span>Price:{{ product. }}</span>#}
+
                     </a>
                     <h4 class="text-center mx-auto">{{ product.name }}</h4>
-                    <p class="text-center mx-auto">€ {{ product.price }}</p>
+                    <h2 class="text-center mx-auto">€ {{ product.price }}</h2>
                 </div>
                 {% endfor %}
             </div>

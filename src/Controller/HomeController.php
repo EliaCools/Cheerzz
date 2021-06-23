@@ -64,4 +64,22 @@ class HomeController extends AbstractController
             'shoppingCart' => $shoppingCart
         ]);
     }
+    #[Route('/bartenderpage', name: 'bartender_page')]
+    public function bartenderPage(): Response
+    {
+
+        $shoppingCart = null;
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
+        return $this->render('/bartender/index.html.twig',[
+            'shoppingCart' => $shoppingCart
+        ]);
+    }
 }

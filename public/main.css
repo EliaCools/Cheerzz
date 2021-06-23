@@ -1056,6 +1056,11 @@ tussen deze 2 comments hierboven  stoppen*/
   text-align: center;
 }
 
+.register-form input {
+  margin: auto;
+  text-align: center;
+}
+
 /* MEDIA QUERIES */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */

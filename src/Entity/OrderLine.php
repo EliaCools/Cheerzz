@@ -39,6 +39,15 @@ class OrderLine
      */
     private $purchaseOrder;
 
+
+    public function __construct(Product $product, int $quantity, float $price)
+    {
+        $this->product = $product;
+        $this->quantity = $quantity;
+        $this->price = $price;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

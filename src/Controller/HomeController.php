@@ -42,6 +42,19 @@ class HomeController extends AbstractController
     #[Route('/about_us', name: 'about_us')]
     public function about(): Response
     {
-        return $this->render('/about.html.twig');
+
+        $shoppingCart = null;
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if($user !== null){
+            $shoppingCart = $user->getSingleShoppingCart();
+        }
+
+
+        return $this->render('/about.html.twig',[
+            'shoppingCart' => $shoppingCart
+        ]);
     }
 }

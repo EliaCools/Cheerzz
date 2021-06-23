@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Appointment;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -54,6 +55,8 @@ class UserFixtures extends Fixture
         $bar1->setPassword($this->passwordHasher->hashPassword($bar1, 'password'));
         $bar1->setPhone('7777777777');
         $bar1->setDateOfBirth(new \DateTime('1970-01-01'));
+//        $bar1->addAppointment(new Appointment($user2, new \DateTime('2021-06-23 12:00:00'),new \DateTime('2021-06-23 15:00:00')));
+//        $bar1->addAppointment(new Appointment($user2, new \DateTime('2021-06-26 15:30:00'),new \DateTime('2021-06-26 20:00:00')));
         $manager->persist($bar1);
         $manager->flush();
 
@@ -64,6 +67,7 @@ class UserFixtures extends Fixture
         $bar2->setPassword($this->passwordHasher->hashPassword($bar2, 'password'));
         $bar2->setPhone('1111111111');
         $bar2->setDateOfBirth(new \DateTime('1996-01-01'));
+//        $bar2->addAppointment(new Appointment($user2, new \DateTime('2021-06-23 13:30:00'),new \DateTime('2021-06-23 18:30:00')));
         $manager->persist($bar2);
         $manager->flush();
 

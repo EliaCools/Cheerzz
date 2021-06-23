@@ -6,7 +6,6 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>{% block title %}Welcome!{% endblock %}</title>
-
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -27,7 +26,7 @@
         {% endblock %}
 
 
-    <div class="row m-5"></div>
+
     {% block footer %}
         {%include 'footer.html.twig' %}
     {% endblock %}

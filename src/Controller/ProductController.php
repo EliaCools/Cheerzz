@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\ProductType;
 use App\Form\ShoppingLineType;
 use App\Model\CocktailApiClient;
+use App\Model\YoutubeApiClient;
 use App\Repository\ProductRepository;
 use http\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,19 +64,25 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'product_detailed', methods: ['GET'])]
-    public function show(Product $product): Response
+    public function show(Product $product, CocktailApiClient $cocktailApiClient): Response
     {
+        $shoppingCart = null;
         /** @var User $user */
         $user = $this->getUser();
 
         if($user !== null){
             $shoppingCart = $user->getSingleShoppingCart();
         }
+//        else
+//        {
+//            $shoppingCart = null;
+//        }
 
 
         return $this->render('product/product_details.html.twig', [
             'product' => $product,
-            'shoppingCart' => $shoppingCart
+            'shoppingCart' => $shoppingCart,
+            'cocktailApi' => $cocktailApiClient,
         ]);
     }
 

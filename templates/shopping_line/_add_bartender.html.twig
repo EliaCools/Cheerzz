@@ -1,0 +1,7 @@
+{%  if bartender is not null %}
+<form method="post" action="{{ path('add_bartender') }}" class="form-check-inline">
+    <input type="text" value='{{ bartender.id }}' name="product" hidden>
+    <input type="number" name="quantity" value="1" hidden>
+    <input type="submit" value="hire bartender" class="formbutton btn mr-md-2 mb-md-0 mb-2 btn-outline-primary btn-round">
+</form>
+{% endif %}

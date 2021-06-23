@@ -3,21 +3,11 @@
 {% block title %}My ShoppingCart{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<h1>my shopping cart</h1>
-
-
-
-
-
-
+<h1 class="text-center" >My shopping cart</h1>
 
     <div class="small-container cart-page">
-        {% for shoppingLine in shopping_lines %}
         <table>
+            {% for shoppingLine in shopping_lines %}
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -26,31 +16,55 @@
             <tr>
                 <td>
                     <div class="cart-info">
+                        {% if shoppingLine.product.name != 'Bartender Service' %}
                         <img class="cart-img" src="https://www.thecocktaildb.com/images/ingredients/{{  shoppingLine.Product.name }}.png" alt="">
+                        {% endif %}
+                        {% if shoppingLine.product.name == 'Bartender Service' %}
+                        <img class="cart-img" src="https://cdn.theforkmanager.com/static/styles/blog_article_header_image/public/wp-blog/3-el-tenedor-atraer-clientes-bartender-restaurante.jpg?itok=RVUU9aiQ" alt="">
+                        {% endif  %}
+
                         <div>
                             <p>{{ shoppingLine.Product.name}}</p>
-                            <small>{{ shoppingLine.Product.price }}</small>
+                            <small>€ {{ shoppingLine.Product.price }}</small>
                             {{ include('shopping_line/_delete_form.html.twig') }}
-                            <a href="">Remove</a>
                         </div>
                     </div>
                 </td>
                 <td>
                     {{ include('shopping_line/_edit_amount.html.twig') }}
                 </td>
-                <td>{{ shoppingLine.calculatePrice(shoppingLine.product) }}</td>
+                <td>€ {{ shoppingLine.calculatePrice(shoppingLine.product) }}</td>
             </tr>
+            {% else %}
+                <div class="d-flex justify-content-center">
+                    <p>Your shopping cart is empty. <br/>  <a href="{{ path('product_index') }}">Take a look at our products!</a> </p>
+
+
+                </div>
+
+            {% endfor%}
+
         </table>
-{% endfor%}
+        {{ include('shopping_line/_add_bartender.html.twig') }}
     <div class="total-price">
         <table>
 
             <tr>
                 <td>Total</td>
-                <td>{{ shoppingCart.totalPrice }}</td>
+                <td>€ {{ shoppingCart.totalPrice }}</td>
+
+            </tr>
+            <tr>
+                <td></td>
+                {% if shopping_lines|length > 0  %}
+                <td>{{ include('shopping_card/_process_order.html.twig') }}</td>
+                {% endif %}
             </tr>
         </table>
     </div>
+
+
+
 
     </div>
 

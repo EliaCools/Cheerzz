@@ -13,6 +13,10 @@ body, html {
 }
 
 /* NAVIGATION BAR STYLING */
+.dropdown-menu {
+  background-color: #7adacc;
+}
+
 .bg-light {
   background-color: #7adacc !important;
 }
@@ -326,6 +330,19 @@ body, html {
 .product-container {
   padding: 80px 0 50px 0;
   width: 100%;
+  background-color: ivory;
+}
+
+.product-container h1 {
+  color: #bf3604;
+}
+
+.product-container p {
+  color: ivory;
+}
+
+.product-container h2 {
+  color: #bf3604;
 }
 
 .col-4 {
@@ -478,7 +495,7 @@ body, html {
   transform: translateX(-50%);
   line-height: 16px;
   color: #fff;
-  background: #222;
+  background: #10ac97;
 }
 
 .cart-info {
@@ -516,10 +533,15 @@ td {
 td input {
   padding: 5px;
   height: 30px;
-  width: 40px;
+  width: 50px;
 }
 
 td a {
+  font-size: 12px;
+  color: #ca4804;
+}
+
+.remove {
   font-size: 12px;
   color: #ca4804;
 }
@@ -548,6 +570,19 @@ th:last-child {
 .detail-img {
   width: 400px;
   height: 400px;
+}
+
+.detailed-description {
+  font-weight: bold;
+  color: #e0ac1c;
+}
+
+.add-to-cart {
+  background-color: #bf3604;
+  color: ivory;
+  border-radius: 50%;
+  padding: 5px;
+  width: 50%;
 }
 
 .single-product {
@@ -773,6 +808,15 @@ tussen deze 2 comments hierboven  stoppen*/
 }
 
 /* MAKE YOUR OWN COCKTAIL STYLING */
+.title-homeBrew {
+  color: #e0ac1c;
+  padding: 60px;
+}
+
+.homebrewSection {
+  background-color: ivory;
+}
+
 /* MAKE YOUR OWN COCKTAIL STYLING OVER*/
 /* FOOTER STYLING */
 /* footer general */

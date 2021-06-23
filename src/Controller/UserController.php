@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\AppointmentRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +43,19 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/bartender', name: 'bartender' , methods: ['GET'])]
+    public function bartender(UserRepository $userRepository, AppointmentRepository $repository): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_BARTENDER");
+        $bartender = $userRepository->findByRole("ROLE_BARTENDER");
+        $appointments = $this->getUser()->getAppointments();
+        return $this->render('user/bartender.html.twig', [
+            'controller_name' => 'UserController',
+            'bartenders'=> $bartender,
+            'appointments'=>$appointments,
+        ]);
+    }
+
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
@@ -67,7 +81,6 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
     #[Route('/{id}', name: 'user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user): Response
     {

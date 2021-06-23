@@ -3,59 +3,25 @@
 {% block title %}Cocktail index{% endblock %}
 
 {% block body %}
-    <h1>Cocktail index</h1>
     <div class="container-fluid ">
+        <h1 class="text-center title-homeBrew">Our Cocktails</h1>
+        <hr>
         <div class=" row flex-row flex-wrap">
             {% for letter in alphabet %}
                     <a class="btn-default col" href="{{ path('cocktail_index',{'firstCharacter':letter}) }}">{{ letter }}</a>
             {% endfor %}
         </div>
+        <hr>
     </div>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Category</th>
-            <th>Glass</th>
-            <th>Ingredients And Measurements</th>
-            <th>Instructions</th>
-            <th>IsAlcoholic</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for cocktail in cocktails %}
-            <tr>
-                <td>{{ cocktail.id }}</td>
-                <td>{{ cocktail.name }}</td>
-                <td><a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}"
-                                                                                    width="60" height="60"></a></td>
-                <td>{{ cocktail.category }}</td>
-                <td>{{ cocktail.glass }}</td>
-                <td>
-                    <ul>
-                        {% for items in cocktail.ingredientsAndMeasurements %}
-                            <li>{{ items|join(', ') }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-                <td>{{ cocktail.instructions }}</td>
-                <td>{{ cocktail.isAlcoholic ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}">show</a>
-                    {# <a href="{{ path('cocktail_edit', {'id': cocktail.id}) }}">edit</a> #}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('cocktail_new') }}">Create new</a>
+<div class="col-10 mx-auto text-center m-5">
+    {% for cocktail in cocktails %}
+    <figure class="figure col-2 m-2">
+        <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}" class="figure-img img-fluid rounded" ></a>
+        <figcaption class="figure-caption text-center"><h5>{{ cocktail.name }}</h5></figcaption>
+    </figure>
+    {% endfor %}
+</div>
+{#    <div class="mx-auto text-center">#}
+{#        <a href="{{ path('cocktail_new') }}" class="btn btn-warning ">Create new</a>#}
+{#    </div>#}
 {% endblock %}

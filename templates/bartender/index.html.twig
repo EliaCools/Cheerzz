@@ -1,0 +1,27 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}Bartending{% endblock %}
+
+{% block body %}
+    <div class="container-fluid ">
+        <h1 class="text-center title-homeBrew">Our Cocktails</h1>
+        <hr>
+        <div class=" row flex-row flex-wrap">
+            {% for letter in alphabet %}
+                    <a class="btn-default col" href="{{ path('cocktail_index',{'firstCharacter':letter}) }}">{{ letter }}</a>
+            {% endfor %}
+        </div>
+        <hr>
+    </div>
+<div class="col-10 mx-auto text-center m-5">
+    {% for cocktail in cocktails %}
+    <figure class="figure col-2 m-2">
+        <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}" class="figure-img img-fluid rounded" ></a>
+        <figcaption class="figure-caption text-center"><h5>{{ cocktail.name }}</h5></figcaption>
+    </figure>
+    {% endfor %}
+</div>
+{#    <div class="mx-auto text-center">#}
+{#        <a href="{{ path('cocktail_new') }}" class="btn btn-warning ">Create new</a>#}
+{#    </div>#}
+{% endblock %}

@@ -16,7 +16,7 @@
                     <h4 class="text-center mx-auto">€ {{ product.price }}</h4>
                     <form method="post" action="{{ path('shopping_line_new') }}">
                         <input type="number" value='{{ product.id }}' name="product" hidden>
-                        <input type="number" name="quantity">
+                        <input type="number" name="quantity" value="1">
                         <input type="text" name="isEdit" value="" hidden>
                         <button class="btn add-to-cart" type="submit">add to cart</button>
                     </form>

@@ -669,6 +669,18 @@ th:last-child {
   }
 }
 /* BARTENDER STYLING */
+.flaring-video {
+  left: 209px;
+}
+
+.featurette-divider, .featurette-heading {
+  color: #B0413E;
+}
+
+.lead {
+  color: #01a48f;
+}
+
 /* BARTENDER STYLING OVER*/
 /* VIKTOR BELANGRIJK > deze styling tussenin die comments effe nog checken welke van uw bartender pagina zijn. Als ge ze herkent
 tussen deze 2 comments hierboven  stoppen*/

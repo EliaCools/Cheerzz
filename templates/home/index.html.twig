@@ -77,25 +77,25 @@
         </div>
     </section>
 
-
-    <section class="why">
+<div>
+    <section class="why ">
 
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
                     <a href="{{ path('cocktail_show', {'id': cocktails[0].id}) }}">
-                        <img src="{{ cocktails[0].image }}" class="d-block w-100" alt="...">
+                        <img src="{{ cocktails[0].image }}" class="d-block w-100" alt="cocktail" >
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="{{ path('cocktail_show', {'id': cocktails[1].id}) }}">
-                        <img src="{{ cocktails[1].image }}" class="d-block w-100" alt="...">
+                        <img src="{{ cocktails[1].image }}" class="d-block w-100" alt="cocktail" >
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="{{ path('cocktail_show', {'id': cocktails[2].id}) }}">
-                        <img src="{{ cocktails[2].image }}" class="d-block w-100" alt="...">
+                        <img src="{{ cocktails[2].image }}" class="d-block w-100" alt="cocktail" >
                     </a>
                 </div>
             </div>
@@ -108,6 +108,6 @@
         </div>
     </section>
 
-
+</div>
 
 {% endblock %}

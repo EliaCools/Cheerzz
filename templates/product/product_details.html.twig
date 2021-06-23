@@ -11,7 +11,7 @@
                 <div class="col-4">
                     <img class="detail-img" src="{{ product.fetchIngredientImageURLMedium(product.name)}}" alt="cocktail">
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <h1 class="text-center mx-auto">{{ product.name }}</h1>
                     <h4 class="text-center mx-auto">€ {{ product.price }}</h4>
                     <form method="post" action="{{ path('shopping_line_new') }}">

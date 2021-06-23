@@ -8,7 +8,7 @@
         </div>
     {% endfor %}
 <section class="hero">
-    <img class="hero img-fluid" src="images/Hero.png" alt="hero">
+    <img class="hero img-fluid" src={{ asset("images/Hero.png") }} alt="hero">
 </section>
     <section class="wrapper">
         <div class="container">
@@ -19,7 +19,7 @@
                         <div class="card-img-overlay d-flex flex-column">
                             <div class="card-body">
                                 <small class="card-meta mb-2">Cocktails</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">The all new Tequila Sunrise</a></h4>
+                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('product_index') }}">The all new Tequila Sunrise</a></h4>
                                 <small><i class="far fa-clock"></i>And include a bartender if you need one!</small>
                             </div>
                             <div class="card-footer">
@@ -38,7 +38,7 @@
                         <div class="card-img-overlay d-flex flex-column">
                             <div class="card-body">
                                 <small class="card-meta mb-2">Cocktail Kits</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Make them yourself!</a></h4>
+                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('home_brew_new') }}">Make them yourself!</a></h4>
                                 <small><i class="far fa-clock"></i>Delivered right to your doorstep</small>
                             </div>
                             <div class="card-footer">
@@ -57,7 +57,7 @@
                         <div class="card-img-overlay d-flex flex-column">
                             <div class="card-body">
                                 <small class="card-meta mb-2">Flairing course</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Learn the art of flairing yourself</a></h4>
+                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('bartender_page') }}">Learn the art of flairing yourself</a></h4>
                                 <small><i class="far fa-clock"></i>With step-by-step training video's!</small>
                             </div>
                             <div class="card-footer">

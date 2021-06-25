@@ -1,13 +1,13 @@
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><img class="logo" src="{{ asset('images/logo.svg') }}" alt="logo"></a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-2 ">
+    <a class="navbar-brand" href="{{ path('home') }}"><img class="logo" src="{{ asset('images/logo.svg') }}"  alt="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse pt-1" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('home') }}">HOME</a>
             </li>
@@ -47,7 +47,7 @@
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('my_shopping_cart') }}"><img class="cart" src="{{ asset('images/cart.svg') }}" alt="cart-logo"></a>
+                    <a class="nav-link" href="{{ path('my_shopping_cart') }}"><img  src="{{ asset('images/cart.svg') }}" width="30px" height="30px" alt="cart-logo"></a>
 
                     <span class="cart-counter">
                      {% if shoppingCart is defined  %}

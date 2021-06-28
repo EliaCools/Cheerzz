@@ -20,7 +20,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item nav-link" href="{{ path('product_index') }}">SHOP</a>
-                    <a class="dropdown-item nav-link" href="{{ path('cocktail_index', {'firstCharacter' : 'a'}) }}">COCKTAIL WIKIPEDIA</a>
+                    <a class="dropdown-item nav-link" href="{{ path('cocktail_index', {'firstCharacter' : 'a'}) }}">COCKTAIL ENCYCLOPEDIA</a>
                     <a class="dropdown-item nav-link" href="{{ path('home_brew_new') }}">MAKE YOUR OWN COCKTAIL</a>
                     <a class="dropdown-item nav-link" href="{{ path('bartender_page') }}">BARTENDING</a>
                     <div class="dropdown-divider"></div>
@@ -39,11 +39,11 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">SIGN IN</a>
+                        <a class="nav-link" href="{{ path('app_login') }}">LOG IN</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_register') }}">SIGN UP</a>
+                        <a class="nav-link" href="{{ path('app_register') }}">REGISTER</a>
                     </li>
                 {% endif %}
                 <li class="nav-item">

@@ -3,28 +3,59 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
-    <div class="login-container text-center">
-    <h1 class="text-center">Register</h1>
+    <section class="why p-5 mb-5 ">
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
 
-        <div class="text-center register-form">
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.userName, {label: 'Name'}) }}
-    {{ form_row(registrationForm.phone, {label: 'Phone'}) }}
-    {{ form_row(registrationForm.email, {label: 'Email'}) }}
-    {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
-    {{ form_row(registrationForm.dateOfBirth, {label: 'Date of Birth'}) }}
+        <div class="row p-5">
+            <div class="login-container col-md-5 text-center border border-warning p-5">
+                <h1 class="text-center">Register</h1>
 
-    {{ form_label(registrationForm.agreeTerms,'agree terms', {'label_attr': {'class': 'text-center'}}) }}
-    {{ form_widget(registrationForm.agreeTerms,{'attr':{'class':'text-center'}}) }}
+                <div class="text-center register-form ">
+                    {{ form_start(registrationForm) }}
 
-            <br/>
-            <button type="submit" class="btn btn-lg btn-primary" >Register</button>
-            {{ form_end(registrationForm) }}
+                    {{ form_label(registrationForm.userName,'Name', {'label_attr': {'class': 'd-block'}}) }}
+                    {{ form_widget(registrationForm.userName,{'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
+                    {{ form_label(registrationForm.phone,'Phone', {'label_attr': {'class': 'd-block'}}) }}
+                    {{ form_widget(registrationForm.phone,{'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
+                    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'd-block'}}) }}
+                    {{ form_widget(registrationForm.email,{'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
+                    {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'd-block'}}) }}
+                    {{ form_widget(registrationForm.plainPassword,{'attr': {'class': 'form-control form-control col-8 mx-auto'}}) }}
+
+
+
+                    {{ form_row(registrationForm.dateOfBirth, {label: 'Date of Birth'}) }}
+
+                    {{ form_label(registrationForm.agreeTerms, 'I am 18 or older and agree with the terms of use', {'label_attr': {'class': 'mt-5'}}) }}
+                    {{ form_widget(registrationForm.agreeTerms,{'attr':{'class':' mb-3'}}) }}
+
+                    <br/>
+                    <button type="submit" class="btn btn-lg btn-primary">Register</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+
+
+            </div>
+            <div class="col text-center mx-5 px-2">
+                <h1 class="p-2 m-2 ">✨ Welcome to our community!🎉 </h1>
+                <div>
+                    <p class="p-3">At Cheerzz we try to make avery moment count for our customers. To become one you
+                        need first to register yourself by filling in this form. You need to be 18 years or older.
+                        <br/>
+                        This gives you the rights to order from our shop, design your own cocktail and even order a
+                        bartender for your event.
+                        <br/>
+                    <hr>
+                    On our side, we will use your registration and ordering data only for internal and ordering services
+                    and <br/>none of it will be given to third parties or services.</p>
+                    <img src="{{ asset("images/dance.png") }}" alt="dancing people" class="float-center" width="280px"
+                         height="280px">
+                </div>
+
+            </div>
         </div>
 
-
-    </div>
+    </section>
 {% endblock %}

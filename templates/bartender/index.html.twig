@@ -1,102 +1,117 @@
-    {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Bartending{% endblock %}
 
 {% block body %}
-        <main role="main">
+    <main role="main">
 
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="first-slide" src="https://dg38gzoej82xh.cloudfront.net/sites/default/files/styles/image_gallery_xl/public/images/node/article/20-bartender-shaking.jpg?itok=W857VEO3" alt="First slide">
-                        <div class="container">
-                            <div class="carousel-caption text-left">
-                                <h1>Hire a bartender on the spot!</h1>
-                                <p>Too comfy to get out of your chair and make some cocktails? No problem, because we offer you the best bartenders in Antwerp!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="second-slide" src="https://www.worldflairassociation.com/wp-content/uploads/2017/02/history-of-flair-2.jpg" alt="Second slide">
-                        <div class="container">
-                            <div class="carousel-caption">
-                                <h1>Learn the art of flairing yourself!</h1>
-                                <p>Multiple Youtube video's can learn you this valuable partyskill!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="third-slide" src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_860,h_549/https://www.nycmixologists.com/wp-content/uploads/2021/01/cocktail-bartenders-for-parties.jpg" alt="Third slide">
-                        <div class="container">
-                            <div class="carousel-caption text-right">
-                                <h1>Hire for parties!</h1>
-                                <p>You can extend the stay of your bartender for parties too!</p>
-                            </div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="first-slide"
+                         src="https://dg38gzoej82xh.cloudfront.net/sites/default/files/styles/image_gallery_xl/public/images/node/article/20-bartender-shaking.jpg?itok=W857VEO3"
+                         alt="First slide">
+                    <div class="container">
+                        <div class="carousel-caption text-left">
+                            <h1>Hire a bartender on the spot!</h1>
+                            <p>Too comfy to get out of your chair and make some cocktails? No problem, because we offer
+                                you the best bartenders in Antwerp!</p>
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <div class="carousel-item">
+                    <img class="second-slide"
+                         src="https://www.worldflairassociation.com/wp-content/uploads/2017/02/history-of-flair-2.jpg"
+                         alt="Second slide">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Learn the art of flairing yourself!</h1>
+                            <p>Multiple Youtube video's can learn you this valuable partyskill!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="third-slide"
+                         src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_860,h_549/https://www.nycmixologists.com/wp-content/uploads/2021/01/cocktail-bartenders-for-parties.jpg"
+                         alt="Third slide">
+                    <div class="container">
+                        <div class="carousel-caption text-right">
+                            <h1>Hire for parties!</h1>
+                            <p>You can extend the stay of your bartender for parties too!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+        <div class="container marketing">
+
+
+            <!-- START THE FEATURETTES -->
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Antwerp based <br> <span class="text-muted">Locally grown</span></h2>
+                    <p class="lead">Support your locals!</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto"
+                         src="https://www.esl-languages.com/sites/default/files/styles/image_gallery/public/city/gallery/esl-antwerp-language-stay-hero.jpg?itok=uOUVh1DU"
+                         alt="Generic placeholder image">
+                </div>
             </div>
 
+            <hr class="featurette-divider">
 
-            <!-- Marketing messaging and featurettes
-            ================================================== -->
-            <!-- Wrap the rest of the page in another container to center all the content. -->
-
-            <div class="container marketing">
-
-
-
-                <!-- START THE FEATURETTES -->
-
-                <hr class="featurette-divider">
-
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">Antwerp based <br> <span class="text-muted">Locally grown</span></h2>
-                        <p class="lead">Support your locals!</p>
-                    </div>
-                    <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" src="https://www.esl-languages.com/sites/default/files/styles/image_gallery/public/city/gallery/esl-antwerp-language-stay-hero.jpg?itok=uOUVh1DU" alt="Generic placeholder image">
-                    </div>
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2 flaring-video">
+                    <h2 class="featurette-heading">Taught to you by <span class="text-muted">professionals</span></h2>
+                    <p class="lead">Step-by-step explained and shown to you in easy video format!</p>
                 </div>
-
-                <hr class="featurette-divider">
-
-                <div class="row featurette">
-                    <div class="col-md-7 order-md-2 flaring-video">
-                        <h2 class="featurette-heading">Taught to you by <span class="text-muted">professionals</span></h2>
-                        <p class="lead">Step-by-step explained and shown to you in easy video format!</p>
-                    </div>
-                    <div class="col-md-5 order-md-1">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/b0IuTL3Z-kk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                <div class="col-md-5 order-md-1">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/b0IuTL3Z-kk"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                 </div>
+            </div>
 
-                <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">Our latest upload <br><span class="text-muted">from Youtube</span></h2>
-                        <p class="lead">This week we'll learn how to make a tequila sunrise!</p>
-                    </div>
-                    <div class="col-md-5">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/FKjciWCpyAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Our latest upload <br><span class="text-muted">from Youtube</span>
+                    </h2>
+                    <p class="lead">This week we'll learn how to make a tequila sunrise!</p>
                 </div>
+                <div class="col-md-5">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/QmBkd_Zxv8k"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
 
-                <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-                <!-- /END THE FEATURETTES -->
+            <!-- /END THE FEATURETTES -->
 
-            </div><!-- /.container -->
+        </div><!-- /.container -->
 
     </main>
 {% endblock %}

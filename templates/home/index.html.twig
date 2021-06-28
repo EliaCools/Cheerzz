@@ -7,10 +7,21 @@
             {{ message }}
         </div>
     {% endfor %}
-    <section class="hero">
-        <img class="hero img-fluid" src={{ asset("images/Hero.png") }} alt="hero">
+    <section class="hero p-5">
+        <div class="float-left col-2 m-1">
+        </div>
+
+        <div class="float-left p-5 mx-5">
+            <h2 class="m-5 px-5 p-2">Everything about:</h2>
+            <h2 class="m-5 px-5 p-2">____Bartending</h2>
+            <h2 class="m-5 px-5 p-2">___Cocktails</h2>
+            <h2 class="m-5 px-5 p-2">__Events</h2>
+        </div>
+
+
+
     </section>
-    <section class="wrapper">
+    <section class="wrapper ">
         <div class="container">
 
             <div class="row">
@@ -75,7 +86,7 @@
                             <div class="card-body">
                                 <small class="card-meta mb-2">Flairing course</small>
                                 <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('bartender_page') }}">Learn
-                                        the art of flairing yourself</a></h4>
+                                        the arts of mixicology and flaring yourself</a></h4>
                                 <small><i class="far fa-clock"></i>With step-by-step training video's!</small>
                             </div>
                             <div class="card-footer">
@@ -85,7 +96,7 @@
                                          alt="Generic placeholder image" style="max-width:50px">
                                     <div class="media-body">
                                         <h6 class="my-0 text-white d-block">Oz COruhlu</h6>
-                                        <small>Director of UI/UX</small>
+                                        <small>A place for perfection</small>
                                     </div>
                                 </div>
                             </div>
@@ -139,12 +150,23 @@
                             <img src="{{ asset("images/Cart.png") }}" class="img-thumbnail " alt="Bike">
                         </a>
                     </div>
-                    <div class="col"><h2 class="featurette-heading">Drinky <br> <span class="text-muted">Bartending services</span></h2>
-                        <h5>Treat yourself and your friends  <br> with something special!</h5>
+                    <div class="col"><h2 class="featurette-heading">Drinky <br> <span class="text-muted">Bartending services</span>
+                        </h2>
+                        <h5>Treat yourself and your friends <br> with something special!</h5>
                     </div>
 
 
-                    <p class="p-5"> With our innovative service "Drinky", we provide class for social gatherings of different magnitudes. We all stress around gathering with friends, coworkers, family and more. After college you can not just put a case of beer on the table and call it a party, but in the clubs and bars it's always crowded and full with annoying and sometimes dangerous people. We provide you a trained bartender that will come at an appointment and will entertain your guests making cocktails from around the world . You can even ask for your one personal cocktail depending on your character or imagine one by yourself on aware page and he will make it for your. The best part is that you don't need even to go to the shop. The bartender can come with all the necessary products at the event as we provide a variety of alcohol for low prices at our online shop , you just make an order and enjoy the party. We will take care of the rest. </p>
+                    <p class="p-5"> With our innovative service "Drinky", we provide class for social gatherings of
+                        different magnitudes. We all stress around gathering with friends, coworkers, family and more.
+                        After college you can not just put a case of beer on the table and call it a party, but in the
+                        clubs and bars it's always crowded and full with annoying and sometimes dangerous people. We
+                        provide you a trained bartender that will come at an appointment and will entertain your guests
+                        making cocktails from around the world . You can even ask for your one personal cocktail
+                        depending on your character or imagine one by yourself on aware page and he will make it for
+                        your. The best part is that you don't need even to go to the shop. The bartender can come with
+                        all the necessary products at the event as we provide a variety of alcohol for low prices at our
+                        online <a href="{{ path("product_index") }}">shop</a> , you just make an order and enjoy the
+                        party. We will take care of the rest. </p>
 
                 </div>
             </section>

@@ -20,10 +20,10 @@
 
 This site uses:
 
-[Bootstrap 4.6](https://getbootstrap.com/) (It's already called from the base.twig file )
-[Symfony 5](https://symfony.com/download)
-[DB](https://www.thecocktaildb.com/api.php)
-[SASS](https://sass-lang.com/)
+[Bootstrap 4.6](https://getbootstrap.com/) (It's already called from the base.twig file ), 
+[Symfony 5](https://symfony.com/download),
+[DB](https://www.thecocktaildb.com/api.php), 
+[SASS](https://sass-lang.com/), 
 
 ### Tasks
 

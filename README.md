@@ -25,14 +25,16 @@ This site uses:
 [DB](https://www.thecocktaildb.com/api.php)
 
 ###Not a dev on this project? Then avert thine eyes.
-TODO: preview
+~~TODO: preview~~ done
 
 ~~TODO: Call API~~ done 
 
-~~TODO: Make a cocktail calculation controller~~ ayup
+~~TODO: Make a cocktail calculation controller~~ done
 
 ~~TODO: Design concept~~ done
-~~TODO: DIY cocktail ~~ done
+
+~~TODO: DIY cocktail~~  done
+
 ~~TODO: Pages~~ done
 
 ~~TODO: Routing~~ done

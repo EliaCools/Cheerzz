@@ -35,11 +35,11 @@ TODO: preview
 ~~TODO: DIY cocktail ~~ done
 ~~TODO: Pages~~ done
 
-TODO: Routing 
+~~TODO: Routing~~ done
 
-TODO: Shopping page 
+~~TODO: Shopping page~~ done
 
-TODO: Training videos 
+~~TODO: Training videos~~ done
 
-TODO: Final functionalities 
+~~TODO: Final functionalities~~ done
 

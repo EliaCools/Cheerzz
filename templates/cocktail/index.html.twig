@@ -13,7 +13,7 @@
         </div>
         <hr>
     </div>
-<div class="col-10 mx-auto text-center m-5">
+<div class="col-10 mx-auto text-center m-5 pb-5">
     {% for cocktail in cocktails %}
     <figure class="figure col-2 m-2">
         <a href="{{ path('cocktail_show', {'id': cocktail.id}) }}"><img src="{{ cocktail.image }}" class="figure-img img-fluid rounded" ></a>

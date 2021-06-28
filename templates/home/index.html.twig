@@ -7,24 +7,41 @@
             {{ message }}
         </div>
     {% endfor %}
-<section class="hero">
-    <img class="hero img-fluid" src={{ asset("images/Hero.png") }} alt="hero">
-</section>
-    <section class="wrapper">
+    <section class="hero p-5">
+        <div class="float-left col-2 m-1">
+        </div>
+
+        <div class="float-left p-5 mx-5">
+            <h2 class="m-5 px-5 p-2">Everything about:</h2>
+            <h2 class="m-5 px-5 p-2">____Bartending</h2>
+            <h2 class="m-5 px-5 p-2">___Cocktails</h2>
+            <h2 class="m-5 px-5 p-2">__Events</h2>
+        </div>
+
+
+
+    </section>
+    <section class="wrapper ">
         <div class="container">
 
             <div class="row">
-                <div class="col-sm-4"><div class="card text-white card-has-bg click-col" style="background-image: url('https://i.pinimg.com/originals/fb/13/7c/fb137cf4efc5ec8b33b659b7262bf967.png')">
-                        <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                <div class="col-sm-4">
+                    <div class="card text-white card-has-bg click-col"
+                         style="background-image: url('https://i.pinimg.com/originals/fb/13/7c/fb137cf4efc5ec8b33b659b7262bf967.png')">
+                        <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
+                             alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
                         <div class="card-img-overlay d-flex flex-column">
                             <div class="card-body">
                                 <small class="card-meta mb-2">Cocktails</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('product_index') }}">The all new Tequila Sunrise</a></h4>
+                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('product_index') }}">The
+                                        all new Tequila Sunrise</a></h4>
                                 <small><i class="far fa-clock"></i>And include a bartender if you need one!</small>
                             </div>
                             <div class="card-footer">
                                 <div class="media">
-                                    <img class="mr-3 rounded-circle" src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png" alt="Generic placeholder image" style="max-width:50px">
+                                    <img class="mr-3 rounded-circle"
+                                         src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+                                         alt="Generic placeholder image" style="max-width:50px">
                                     <div class="media-body">
                                         <h6 class="my-0 text-white d-block">Pierre Mertens</h6>
                                         <small>This blew my mind! So good!!</small>
@@ -32,18 +49,25 @@
                                 </div>
                             </div>
                         </div>
-                    </div></div>
-                <div class="col-sm-4"><div class="card text-white card-has-bg click-col" style="background-image:url('https://images.vexels.com/media/users/3/128809/isolated/preview/c67aef3d02b7b2eb9cfb953fe776d224-stack-of-cardboard-boxes-by-vexels.png');">
-                        <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tree,nature" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-white card-has-bg click-col"
+                         style="background-image:url('https://images.vexels.com/media/users/3/128809/isolated/preview/c67aef3d02b7b2eb9cfb953fe776d224-stack-of-cardboard-boxes-by-vexels.png');">
+                        <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tree,nature"
+                             alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
                         <div class="card-img-overlay d-flex flex-column">
                             <div class="card-body">
                                 <small class="card-meta mb-2">Want your custom cocktail?</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('home_brew_new') }}">Make them yourself!</a></h4>
+                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('home_brew_new') }}">Make
+                                        them yourself!</a></h4>
                                 <small><i class="far fa-clock"></i>Delivered right to your doorstep</small>
                             </div>
                             <div class="card-footer">
                                 <div class="media">
-                                    <img class="mr-3 rounded-circle" src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png" alt="Generic placeholder image" style="max-width:50px">
+                                    <img class="mr-3 rounded-circle"
+                                         src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+                                         alt="Generic placeholder image" style="max-width:50px">
                                     <div class="media-body">
                                         <h6 class="my-0 text-white d-block">Lydia Verscheire</h6>
                                         <small>So handy! Perfect for a nice evening!</small>
@@ -51,63 +75,102 @@
                                 </div>
                             </div>
                         </div>
-                    </div></div>
-                <div class="col-sm-4"><div class="card text-white card-has-bg click-col" style="background-image:url('https://www.pngitem.com/pimgs/m/141-1411586_bar-tender-png-transparent-png.png');">
-                        <img class="card-img d-none" src="https://source.unsplash.com/600x900/?computer,design" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-white card-has-bg click-col"
+                         style="background-image:url('https://www.pngitem.com/pimgs/m/141-1411586_bar-tender-png-transparent-png.png');">
+                        <img class="card-img d-none" src="https://source.unsplash.com/600x900/?computer,design"
+                             alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
                         <div class="card-img-overlay d-flex flex-column">
                             <div class="card-body">
                                 <small class="card-meta mb-2">Flairing course</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('bartender_page') }}">Learn the art of flairing yourself</a></h4>
+                                <h4 class="card-title mt-0 "><a class="text-white" href="{{ path('bartender_page') }}">Learn
+                                        the arts of mixicology and flaring yourself</a></h4>
                                 <small><i class="far fa-clock"></i>With step-by-step training video's!</small>
                             </div>
                             <div class="card-footer">
                                 <div class="media">
-                                    <img class="mr-3 rounded-circle" src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png" alt="Generic placeholder image" style="max-width:50px">
+                                    <img class="mr-3 rounded-circle"
+                                         src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+                                         alt="Generic placeholder image" style="max-width:50px">
                                     <div class="media-body">
                                         <h6 class="my-0 text-white d-block">Oz COruhlu</h6>
-                                        <small>Director of UI/UX</small>
+                                        <small>A place for perfection</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div></div>
+                    </div>
+                </div>
 
             </div>
 
         </div>
     </section>
 
-<div>
-    <section class="why ">
+    <div>
+        <div class="row">
+            <section class="why p-5 ">
 
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
 
-                <div class="carousel-item active">
-                    <a href="{{ path('cocktail_show', {'id': cocktails[0].id}) }}">
-                        <img src="{{ cocktails[0].image }}" class="d-block w-100" alt="cocktail" >
+                <div id="carouselExampleControls" class="carousel slide col-4 float-left mr-5 " data-ride="carousel">
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <a href="{{ path('cocktail_show', {'id': cocktails[0].id}) }}">
+                                <img src="{{ cocktails[0].image }}" alt="cocktail">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ path('cocktail_show', {'id': cocktails[1].id}) }}">
+                                <img src="{{ cocktails[1].image }}" alt="cocktail">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{{ path('cocktail_show', {'id': cocktails[2].id}) }}">
+                                <img src="{{ cocktails[2].image }}" alt="cocktail">
+                            </a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                       data-slide="prev"> <span
+                                class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+                                class="sr-only">Previous</span>
+                    </a> <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next"> <span
+                                class="carousel-control-next-icon" aria-hidden="true"></span> <span
+                                class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="carousel-item">
-                    <a href="{{ path('cocktail_show', {'id': cocktails[1].id}) }}">
-                        <img src="{{ cocktails[1].image }}" class="d-block w-100" alt="cocktail" >
-                    </a>
+                <div class="col mx-auto text-align-center ">
+                    <hr>
+                    <div class="col-2 float-right ml-2">
+                        <a href="{{ path('contact') }}">
+                            <img src="{{ asset("images/Cart.png") }}" class="img-thumbnail " alt="Bike">
+                        </a>
+                    </div>
+                    <div class="col"><h2 class="featurette-heading">Drinky <br> <span class="text-muted">Bartending services</span>
+                        </h2>
+                        <h5>Treat yourself and your friends <br> with something special!</h5>
+                    </div>
+
+
+                    <p class="p-5"> With our innovative service "Drinky", we provide class for social gatherings of
+                        different magnitudes. We all stress around gathering with friends, coworkers, family and more.
+                        After college you can not just put a case of beer on the table and call it a party, but in the
+                        clubs and bars it's always crowded and full with annoying and sometimes dangerous people. We
+                        provide you a trained bartender that will come at an appointment and will entertain your guests
+                        making cocktails from around the world . You can even ask for your one personal cocktail
+                        depending on your character or imagine one by yourself on aware page and he will make it for
+                        your. The best part is that you don't need even to go to the shop. The bartender can come with
+                        all the necessary products at the event as we provide a variety of alcohol for low prices at our
+                        online <a href="{{ path("product_index") }}">shop</a> , you just make an order and enjoy the
+                        party. We will take care of the rest. </p>
+
                 </div>
-                <div class="carousel-item">
-                    <a href="{{ path('cocktail_show', {'id': cocktails[2].id}) }}">
-                        <img src="{{ cocktails[2].image }}" class="d-block w-100" alt="cocktail" >
-                    </a>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span
-                        class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-                        class="sr-only">Previous</span>
-            </a> <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span
-                        class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span>
-            </a>
+            </section>
         </div>
-    </section>
-
-</div>
+    </div>
 
 {% endblock %}

@@ -47,7 +47,7 @@ background-color: #54d3c2;
 }
 
 .logo {
-  height: 100px;
+  height: 120px;
 }
 
 .cart {
@@ -62,15 +62,19 @@ background-color: #54d3c2;
 
 .hero {
   width: 100%;
-  min-height: calc(100vh - 58px - 345px);
-  margin: 0 auto;
+  background-color: #7bd9cb;
+  background-image: url("images/Hero.png");
+  background-repeat:no-repeat;
+  background-position: right;
+  background-size: 1300px 740px;
+  height: 700px;
+  font-family: 'Oswald', sans-serif;
+  font-style: italic;
+  color: #bf3604;
 }
+.glasses{
 
-.hero-img {
-  width: 100%;
-  margin: 0 auto;
 }
-
 .orderButton {
   vertical-align: middle;
 }

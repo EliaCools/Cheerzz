@@ -23,8 +23,9 @@ This site uses:
 [Bootstrap 4.6](https://getbootstrap.com/) (It's already called from the base.twig file )
 [Symfony 5](https://symfony.com/download)
 [DB](https://www.thecocktaildb.com/api.php)
+[SASS](https://sass-lang.com/)
 
-###Not a dev on this project? Then avert thine eyes.
+### Tasks
 
 ~~TODO: preview~~ done
 

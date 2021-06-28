@@ -2,7 +2,7 @@
 ## Bartending services 
 [home page](https://github.com/AntonKantardzhiev/BarThing/tree/main/templates/home)
 
-![alt text]()
+![Home page](public/images/Screenshots/main.png)
 
 ### MADE BY:
     Anton Kantartzhiev
@@ -11,7 +11,7 @@
      -frontend dev
     Kai Helsen, Thomas Pieters, Elia Coels
      -backend dev   
-
+![About us](public/images/Screenshots/about_us.png)
 
 
 

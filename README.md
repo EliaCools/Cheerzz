@@ -25,6 +25,7 @@ This site uses:
 [DB](https://www.thecocktaildb.com/api.php)
 
 ###Not a dev on this project? Then avert thine eyes.
+
 ~~TODO: preview~~ done
 
 ~~TODO: Call API~~ done 

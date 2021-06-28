@@ -11,6 +11,7 @@
 /.env/
 .idea
 .env
+.sass-cache
 
 ###< symfony/framework-bundle ###
 

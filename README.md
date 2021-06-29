@@ -5,13 +5,14 @@
 ![Home page](public/images/Screenshots/main.png)
 
 ### MADE BY:
-    Anton Kantartzhiev
      -scrum master and some backend
-    Alexandra Banica, Viktor Podevyn
+    Anton Kantartzhiev
      -frontend dev
-    Kai Helsen, Thomas Pieters, Elia Cools
+    Alexandra Banica, Viktor Podevyn
      -backend dev   
-![About us](public/images/Screenshots/about_us.png)
+    Kai Helsen, Thomas Pieters, Elia Cools
+
+
 
 
 
